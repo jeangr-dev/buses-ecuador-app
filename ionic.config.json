@@ -1,0 +1,7 @@
+{
+  "name": "buses-ecuador-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
