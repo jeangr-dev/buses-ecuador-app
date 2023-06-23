@@ -1,0 +1,58 @@
+<ion-content>
+  <div class="container">
+
+    <div class="head">
+      <ion-text class="title">Iniciar Sesión</ion-text>
+    </div>
+
+    <div class="logo">
+      <img src="assets/logoApp.png" alt="Logo" >
+    </div>
+
+    <div class="form-container"> 
+
+      <ion-grid>
+
+        <ion-row>
+          <ion-col>
+            <ion-text  color="danger" *ngIf="wrongCredentials.invalid && (wrongCredentials.dirty || wrongCredentials.touched)">
+              <ion-label *ngIf="wrongCredentials.errors?.hasOwnProperty('required')">Credenciales incorrectas.</ion-label>
+            </ion-text>  
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input clearInput type="text" [(ngModel)]="username" placeholder="Ingrese nombre de usuario" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input clearInput type="password" [(ngModel)]="password" placeholder="Ingrese contraseña" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="ingresar()" >Ingresar</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="register_user()" >Registrarse</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </div>
+     
+      <ion-text color="danger" *ngIf="isEmptyInputText.invalid && (isEmptyInputText.dirty || isEmptyInputText.touched)">
+        <ion-label *ngIf="isEmptyInputText.errors?.hasOwnProperty('required')">Todos los campos son obligatorios.</ion-label>
+      </ion-text>   
+    </div>
+</ion-content>
