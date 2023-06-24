@@ -1,0 +1,26 @@
+<ion-menu  contentId="main-content">
+  <ion-content class="opciones" >
+    <div class="container">
+        <div class="logo">
+          <img src="assets/icon-user.png" alt="img">
+        </div>
+        <div class="head">
+        <ion-title>Nombre de Usuario</ion-title>
+        <ion-title>Rol de Usuario</ion-title>
+      </div>
+      <div class="paginas" *ngFor="let item of items">
+        <hr>
+          <div class="logo1">
+            <img [src]="item.image" alt="Imagen">
+          </div>&nbsp;<div class="nombre">{{item.name}}</div>
+      </div>
+      <br>
+      <hr>
+    </div>
+  </ion-content>
+  </ion-menu>
+  <div id="main-content">
+        <ion-buttons>
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+  </div>
