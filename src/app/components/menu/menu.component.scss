@@ -1,0 +1,45 @@
+
+
+ion-title {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Inter';
+    width: auto;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+.logo {
+    display: flex;
+    justify-content: center;
+    width: 94px;
+    height: 94px;
+    margin-top: 53px;
+    margin-left: 84px;
+    margin-right: 110px;
+  }
+
+.paginas{
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.logo1{
+    margin-left: 20px;
+    float: left;
+  width: 68px;
+  flex-shrink: 0;
+}
+
+.nombre{
+    display: flex;
+float: right;
+  width: 200px;
+  font-size: 24px;
+  font-family: 'Inter';
+}
+
+hr{
+    background-color: white;
+}

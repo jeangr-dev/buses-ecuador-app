@@ -44,6 +44,7 @@ ion-button {
 .destino{
   --background:#A9CBA6 ;
 }
+
 .logo{
   position: absolute;
     top:-4rem;
@@ -56,21 +57,16 @@ ion-button {
     transition: none;
 }
 
-.logo:active{
-  --background: transparent;
-  --outline: none;
-  --box-shadow: none;
-  --animation: unset;
-  transition: none;
-}
-.logo:hover{
-  --animation: unset;
-  transition: none;
+ion-menu-button{
+position: absolute;
+top: 20px;
+left: 30px;
+font-size: 40px;
 }
 
-.img{
-  
-  display: flex;
-    max-width: 100%;
-    min-height:100%
-}
+
+
+
+
+
+
