@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { FormControl, Validators } from '@angular/forms';
+import { DataSharingService } from '../../services/data-sharing.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginPage implements OnInit {
   wrongCredentials = new FormControl('', Validators.required);
   isEmptyInputText = new FormControl('', Validators.required);
 
-  constructor(private http: HttpClient, private navCtrl: NavController) {}
+  constructor(private http: HttpClient, private navCtrl: NavController,
+                      private dataSharingService: DataSharingService) {}
 
   ngOnInit() {}
 
@@ -29,6 +31,10 @@ export class LoginPage implements OnInit {
     } else {
       return true;
     }
+  }
+
+  toSendData(dataUser: any) {
+    this.dataSharingService.setJsonData(dataUser);
   }
 
   ingresar() {
@@ -51,6 +57,8 @@ export class LoginPage implements OnInit {
         (response: HttpResponse<any>) => {
           if (response && response.status == 200 && response.body) {
             try {
+              console.log(response.body);
+              this.toSendData(response.body);
               this.navCtrl.navigateForward('/home');
             } catch (error) {
               console.error('Error al procesar la respuesta:', error);
