@@ -13,7 +13,7 @@
     <ion-grid style="--ion-grid-padding: 0;">
       <ion-row style="margin-bottom: 15px;">
         <ion-col size="auto">
-          <ion-text style="color: black; width: auto; ">Nombres{{ names }}</ion-text>
+          <ion-text style="color: black; width: auto; ">Nombres: {{ names }}</ion-text>
         </ion-col>
         <ion-col  class="custom-col">
           <ion-text (click)="editNames()" style="cursor: pointer; text-decoration: underline;
@@ -23,7 +23,7 @@
 
       <ion-row style="margin-bottom: 15px;">
         <ion-col size="auto" >
-          <ion-text style="color: black; width: auto;">Nombre de usuario{{ username }}</ion-text>
+          <ion-text style="color: black; width: auto;">Nombre de usuario: {{ username }}</ion-text>
         </ion-col>
         <ion-col class="custom-col">
           <ion-text (click)="editUsername()" style="cursor: pointer; text-decoration: underline;
@@ -33,7 +33,7 @@
 
       <ion-row style="margin-bottom: 15px;">
         <ion-col size="auto">
-          <ion-text style="color: black; width: auto;">Teléfono{{ phone }}</ion-text>
+          <ion-text style="color: black; width: auto;">Teléfono: {{ phone }}</ion-text>
         </ion-col>
         <ion-col class="custom-col">
           <ion-text (click)="editPhone()" style="cursor: pointer; text-decoration: underline;
@@ -43,7 +43,7 @@
 
       <ion-row style="margin-bottom: 30px;">
         <ion-col size="auto">
-          <ion-text style="color: black; width: auto;">Correo Electrónico{{ email }}</ion-text>
+          <ion-text style="color: black; width: auto;">Correo Electrónico: {{ email }}</ion-text>
         </ion-col>
         <ion-col class="custom-col">
           <ion-text (click)="editEmail()" style="cursor: pointer; text-decoration: underline;
