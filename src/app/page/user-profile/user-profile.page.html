@@ -1,4 +1,4 @@
-<ion-content >
+<ion-content>
 <div class="container">
   <div class="head">
     <div id="menu">
@@ -56,7 +56,7 @@
 
       <ion-row >
         <ion-col >
-          <ion-button (click)="changePassword()" id="open-modal" >Cambiar contraseña</ion-button>
+          <ion-button id="open-modal" >Cambiar contraseña</ion-button>
         </ion-col>
       </ion-row>
 
@@ -73,17 +73,27 @@
               <ion-text class="titleModal">Cambiar Contraseña</ion-text>
             </div>
             <ion-item class="inputPassword">
-              <ion-input clearInput type="password" placeholder="Contraseña actual" required></ion-input>
+              <ion-input [(ngModel)]="passwordCurrent" clearInput type="password" placeholder="Contraseña actual" required></ion-input>
             </ion-item>
             <ion-item class="inputPassword" >
-              <ion-input clearInput type="password" placeholder="Contraseña nueva" required> </ion-input>
+              <ion-input [(ngModel)]="passwordNew" clearInput type="password" placeholder="Contraseña nueva" required> </ion-input>
             </ion-item>
             <ion-item class="inputPassword">
-              <ion-input clearInput type="password" placeholder="Confirmar contraseña" required></ion-input>
+              <ion-input [(ngModel)]="confPassword" clearInput type="password" placeholder="Confirmar contraseña" required></ion-input>
             </ion-item>
-            <ion-button class="btnModal">Confirmar</ion-button>
-          </div>
+            <ion-button (click)="changePassword()" class="btnModal">Confirmar</ion-button>
 
+            <ion-text color="danger" *ngIf="wrongPasswCurrent.invalid && (wrongPasswCurrent.dirty || wrongPasswCurrent.touched)">
+              <ion-label *ngIf="wrongPasswCurrent.errors?.hasOwnProperty('required')">Contraseña actual incorrecta</ion-label>
+            </ion-text>
+            <ion-text color="danger" *ngIf="wrongPassword.invalid && (wrongPassword.dirty || wrongPassword.touched)">
+              <ion-label *ngIf="wrongPassword.errors?.hasOwnProperty('required')">Las contraseñas no coinciden</ion-label>
+            </ion-text>
+            <ion-text color="danger" *ngIf="isEmptyInputText.invalid && (isEmptyInputText.dirty || isEmptyInputText.touched)">
+              <ion-label *ngIf="isEmptyInputText.errors?.hasOwnProperty('required')">Todos los campos son obligatorios</ion-label>
+            </ion-text> 
+
+          </div>
         </ion-content>
       </ng-template>
     </ion-modal>
