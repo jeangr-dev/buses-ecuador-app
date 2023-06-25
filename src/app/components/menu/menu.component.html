@@ -1,14 +1,27 @@
-<ion-menu  contentId="main-content">
+<ion-menu class="menu"  contentId="main-content" (ionWillOpen)="onMenuOpen()">
   <ion-content class="opciones" >
     <div class="container">
-        <div class="logo">
-          <img src="assets/icon-user.png" alt="img">
-        </div>
-        <div class="head">
-        <ion-title>Nombre de Usuario</ion-title>
-        <ion-title>Rol de Usuario</ion-title>
+        <div class="dataUser">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <img class="imgUser" src="assets/icon-user.png" alt="img">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text>{{namesUser}}</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text>{{rolUser}}</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
       </div>
-      <div class="paginas" *ngFor="let item of items">
+      <div class="paginas" *ngFor="let item of items" (click)="onMenuItemClick(item)">
         <hr>
           <div class="logo1">
             <img [src]="item.image" alt="Imagen">
