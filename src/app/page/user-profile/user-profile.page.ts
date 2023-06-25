@@ -13,7 +13,11 @@ export class UserProfilePage implements OnInit {
   username!: string;
   phone!: string;
   email!: string;
+  showBackdrop: boolean = false;
 
+  toggleBackdrop() {
+    this.showBackdrop = !this.showBackdrop;
+  }
   
   constructor(private dataSharingService: DataSharingService) { }
 

@@ -40,7 +40,7 @@
         </ion-col>
         <ion-col class="custom-col">
           <ion-text (click)="editPhone()" style="cursor: pointer; text-decoration: underline;
-                    color: #063940;;">editar</ion-text>
+                    color: #063940;">editar</ion-text>
         </ion-col>
       </ion-row>
 
@@ -56,11 +56,37 @@
 
       <ion-row >
         <ion-col >
-          <ion-button (click)="changePassword()" >Cambiar contraseña</ion-button>
+          <ion-button (click)="changePassword()" id="open-modal" >Cambiar contraseña</ion-button>
         </ion-col>
       </ion-row>
 
     </ion-grid>
+  </div>
+
+  <div>
+    <ion-modal #modal trigger="open-modal" [showBackdrop]="showBackdrop">
+      <ng-template >
+        <ion-content>
+
+          <div class="modal">
+            <div class="headModal">
+              <ion-text class="titleModal">Cambiar Contraseña</ion-text>
+            </div>
+            <ion-item class="inputPassword">
+              <ion-input clearInput type="password" placeholder="Contraseña actual" required></ion-input>
+            </ion-item>
+            <ion-item class="inputPassword" >
+              <ion-input clearInput type="password" placeholder="Contraseña nueva" required> </ion-input>
+            </ion-item>
+            <ion-item class="inputPassword">
+              <ion-input clearInput type="password" placeholder="Confirmar contraseña" required></ion-input>
+            </ion-item>
+            <ion-button class="btnModal">Confirmar</ion-button>
+          </div>
+
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
 </div>  
 </ion-content>

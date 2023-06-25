@@ -40,9 +40,9 @@ ion-grid {
 }
 
 .custom-col {
-    text-align: right;
-    margin-right: 20px;
-  }
+  text-align: right;
+  margin-right: 20px;
+}
 
 ion-button {
   --border-radius: 8px;
@@ -61,4 +61,57 @@ ion-menu-button {
   left: 30px;
   font-size: 42px;
   color: white;
+}
+
+ion-modal {
+  --height: 45%;
+  --border-radius: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.headModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 17%;
+  background-color: #063940;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 100%;
+}
+
+.titleModal {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Lora";
+  width: auto;
+  text-align: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background-color: #fff;
+}
+
+.inputPassword {
+  --border-radius: 8px;
+  margin-top: 20px;
+  width: 325px;
+}
+
+.btnModal {
+  --border-radius: 8px;
+  margin-top: 25px;
+  width: 325px;
+  height: 45px;
+  font-weight: bold;
+  font-size: large;
+  --color: white;
+  --background: #063940;
+  --background-activated: #47667b;
 }
