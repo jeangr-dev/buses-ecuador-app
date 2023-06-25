@@ -22,7 +22,6 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   isEmptyInput(username: string, password: string) {
- 
     if (!username || !password || /^\s+|\s+$/g.test(username) || /^\s+|\s+$/g.test(password)
           || !this.isEmptyInputText.invalid) {
 
@@ -31,6 +30,11 @@ export class LoginPage implements OnInit {
     } else {
       return true;
     }
+  }
+
+  clearInput() {
+    this.username = '';
+    this.password = '';
   }
 
   toSendData(dataUser: any) {
@@ -59,6 +63,7 @@ export class LoginPage implements OnInit {
             try {
               console.log(response.body);
               this.toSendData(response.body);
+              this.clearInput();
               this.navCtrl.navigateForward('/home');
             } catch (error) {
               console.error('Error al procesar la respuesta:', error);
