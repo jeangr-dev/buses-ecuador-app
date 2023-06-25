@@ -54,3 +54,11 @@ ion-button {
   --background: #063940;
   --background-activated: #47667b;
 }
+
+ion-menu-button {
+  position: absolute;
+  top: 33px;
+  left: 30px;
+  font-size: 42px;
+  color: white;
+}
