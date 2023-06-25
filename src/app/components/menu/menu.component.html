@@ -8,19 +8,17 @@
         <ion-title>Nombre de Usuario</ion-title>
         <ion-title>Rol de Usuario</ion-title>
       </div>
-      <div class="paginas" *ngFor="let item of items">
-        <hr>
-          <div class="logo1">
-            <img [src]="item.image" alt="Imagen">
-          </div>&nbsp;<div class="nombre">{{item.name}}</div>
-      </div>
+      <ion-menu-toggle autoHide="true">
+        <div class="paginas" *ngFor="let item of items"
+        [routerLink]="item.redirect">
+         <hr>
+           <div class="logo1">
+             <img [src]="item.image" alt="Imagen">
+           </div>&nbsp;<div class="nombre">{{item.name}}</div>
+       </div>
+      </ion-menu-toggle>
       <br>
       <hr>
     </div>
   </ion-content>
   </ion-menu>
-  <div id="main-content">
-        <ion-buttons>
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-  </div>

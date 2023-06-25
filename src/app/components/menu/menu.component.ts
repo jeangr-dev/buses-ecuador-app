@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent  implements OnInit {
   public items = [
-    { name: 'Inicio', image: 'assets/casa.svg' },
-    { name: 'Boletos Comprados', image: 'assets/boleto.svg' },
-    { name: 'Comprar Boletos', image: 'assets/compra.svg' },
-    { name: 'Destinos', image: 'assets/destino.svg' },
-    { name: 'Perfil', image: 'assets/user.svg' },
-    { name: 'Cerrar Sesión', image: 'assets/cerrar.svg' }
+    { name: 'Inicio', image: 'assets/casa.svg', redirect:"user-profile"},
+    { name: 'Boletos Comprados', image: 'assets/boleto.svg', redirect:"#" },
+    { name: 'Comprar Boletos', image: 'assets/compra.svg', redirect:"#" },
+    { name: 'Destinos', image: 'assets/destino.svg', redirect:"#" },
+    { name: 'Perfil', image: 'assets/user.svg' , redirect:"#"},
+    { name: 'Cerrar Sesión', image: 'assets/cerrar.svg', redirect:"#" }
   ];
   constructor() { }
 
