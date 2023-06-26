@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataSharingService } from '../../services/data-sharing.service';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { ModalController, AlertController, NavController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -25,6 +26,13 @@ export class UserProfilePage implements OnInit {
   wrongPasswCurrent = new FormControl('', Validators.required);
   isEmptyInputText = new FormControl('', Validators.required);
   wrongPassword = new FormControl('', Validators.required);
+
+  constructor(private dataSharingService: DataSharingService,
+    private http: HttpClient, private modalController: ModalController,
+    private alertController: AlertController,
+    private navCtrl: NavController) { 
+
+    }
 
   constructor(private dataSharingService: DataSharingService,
     private http: HttpClient, private modalController: ModalController) { }
@@ -67,15 +75,27 @@ export class UserProfilePage implements OnInit {
           this.consumeService(dataUser);
 
         } else {
+
+          this.clearMsjDanger();
+
           this.wrongPassword.markAsTouched();
           this.clearInput();
         }
       } else {
+
+        this.clearMsjDanger();
         this.wrongPasswCurrent.markAsTouched();
         this.clearInput();
       }
     }
   }
+
+  clearMsjDanger() {
+    this.wrongPasswCurrent.markAsUntouched();
+    this.isEmptyInputText.markAsUntouched();
+    this.wrongPassword.markAsUntouched();
+  }
+
 
   consumeService(dataUser: string) {
     const url = 'http://localhost:8080/personas/actualizar-persona';
@@ -88,8 +108,12 @@ export class UserProfilePage implements OnInit {
         if (response && response.status == 200 && response.body) {
           try {
             this.closeModal();
+
+            this.presentAlert();
             this.clearInput();
+            this.clearMsjDanger();
           } catch (error) {
+
             console.error('Error al procesar la respuesta:', error);
           }
         } else {
@@ -113,6 +137,8 @@ export class UserProfilePage implements OnInit {
       /^\s+|\s+$/g.test(passwordNew) ||
       /^\s+|\s+$/g.test(confpassword)) {
 
+      this.clearMsjDanger();
+
       this.isEmptyInputText.markAsTouched();
       return false;
     } else {
@@ -124,6 +150,32 @@ export class UserProfilePage implements OnInit {
     await this.modalController.dismiss({
       dismissed: true
     });
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: '¿Desea cerrar sesión?',
+      buttons: [
+        {
+          text: 'No',
+          cssClass: 'alert-button-cancel',
+        },
+        {
+          text: 'Sí',
+          cssClass: 'alert-button-confirm',
+          handler: () => {
+            // Acción a realizar cuando se selecciona "Sí"
+            this.cerrarSesion();
+          }
+        },
+      ]
+    });
+  
+    await alert.present();
+  }
+
+  cerrarSesion() {
+    this.navCtrl.navigateForward('/login');
   }
 
   clearInput() {

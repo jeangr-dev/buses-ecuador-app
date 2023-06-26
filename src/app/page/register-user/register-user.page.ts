@@ -24,6 +24,8 @@ export class RegisterUserPage implements OnInit {
   constructor(private http: HttpClient, private navCtrl: NavController) { }
 
   ngOnInit() {
+
+    
   }
 
   isEmptyInput(cedula:string, nomApell:string, username:string, telefono:string,
@@ -65,6 +67,7 @@ export class RegisterUserPage implements OnInit {
           this.consumeService(dataUser);
           
         } else {
+          this.clearMsjDanger();
           this.wrongPassword.markAsTouched();
           this.password = "";
           this.confpassword = "";
@@ -84,6 +87,7 @@ export class RegisterUserPage implements OnInit {
           try {
             this.navCtrl.navigateForward('/login');
             this.clearInput();
+            this.clearMsjDanger()
           } catch (error) {
             console.error('Error al procesar la respuesta:', error);
           }
@@ -97,6 +101,11 @@ export class RegisterUserPage implements OnInit {
     );
   }
 
+  clearMsjDanger() {
+    this.isEmptyInputText.markAsUntouched();
+    this.wrongPassword.markAsUntouched();
+  }
+  
   clearInput() {
     this.cedula = '';
     this.nomApell = '';

@@ -24,7 +24,8 @@ export class LoginPage implements OnInit {
   isEmptyInput(username: string, password: string) {
     if (!username || !password || /^\s+|\s+$/g.test(username) || /^\s+|\s+$/g.test(password)
           || !this.isEmptyInputText.invalid) {
-
+            
+            this.clearInput();
             this.isEmptyInputText.markAsTouched();
             return false;
     } else {
@@ -35,6 +36,9 @@ export class LoginPage implements OnInit {
   clearInput() {
     this.username = '';
     this.password = '';
+    this.isEmptyInputText.markAsUntouched();
+    this.wrongCredentials.markAsUntouched();
+
   }
 
   toSendData(dataUser: any) {
@@ -69,6 +73,7 @@ export class LoginPage implements OnInit {
               console.error('Error al procesar la respuesta:', error);
             }
           } else {
+            this.clearInput();
             this.wrongCredentials.markAsTouched();
             console.error('Respuesta HTTP nula o vacía recibida');
           }
