@@ -91,9 +91,10 @@
             </ion-text>
             <ion-text color="danger" *ngIf="isEmptyInputText.invalid && (isEmptyInputText.dirty || isEmptyInputText.touched)">
               <ion-label *ngIf="isEmptyInputText.errors?.hasOwnProperty('required')">Todos los campos son obligatorios</ion-label>
-            </ion-text> 
-
+            </ion-text>
           </div>
+
+          <ion-alert class="custom-alert"></ion-alert>
         </ion-content>
       </ng-template>
     </ion-modal>
