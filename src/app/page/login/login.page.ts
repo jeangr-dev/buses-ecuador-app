@@ -36,7 +36,6 @@ export class LoginPage implements OnInit {
   clearInput() {
     this.username = '';
     this.password = '';
-    this.wrongCredentials.setValue('');
     this.isEmptyInputText.markAsUntouched();
     this.wrongCredentials.markAsUntouched();
 

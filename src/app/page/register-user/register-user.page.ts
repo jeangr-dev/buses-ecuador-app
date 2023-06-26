@@ -105,7 +105,7 @@ export class RegisterUserPage implements OnInit {
     this.isEmptyInputText.markAsUntouched();
     this.wrongPassword.markAsUntouched();
   }
-
+  
   clearInput() {
     this.cedula = '';
     this.nomApell = '';

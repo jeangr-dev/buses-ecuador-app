@@ -3,6 +3,7 @@ import { DataSharingService } from '../../services/data-sharing.service';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ModalController, AlertController, NavController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-profile',
@@ -26,14 +27,15 @@ export class UserProfilePage implements OnInit {
   isEmptyInputText = new FormControl('', Validators.required);
   wrongPassword = new FormControl('', Validators.required);
 
-  
-
   constructor(private dataSharingService: DataSharingService,
     private http: HttpClient, private modalController: ModalController,
     private alertController: AlertController,
     private navCtrl: NavController) { 
 
     }
+
+  constructor(private dataSharingService: DataSharingService,
+    private http: HttpClient, private modalController: ModalController) { }
 
   ngOnInit() {
     this.initDataUser();
@@ -73,11 +75,14 @@ export class UserProfilePage implements OnInit {
           this.consumeService(dataUser);
 
         } else {
+
           this.clearMsjDanger();
+
           this.wrongPassword.markAsTouched();
           this.clearInput();
         }
       } else {
+
         this.clearMsjDanger();
         this.wrongPasswCurrent.markAsTouched();
         this.clearInput();
@@ -91,6 +96,7 @@ export class UserProfilePage implements OnInit {
     this.wrongPassword.markAsUntouched();
   }
 
+
   consumeService(dataUser: string) {
     const url = 'http://localhost:8080/personas/actualizar-persona';
     const headers = {
@@ -102,6 +108,7 @@ export class UserProfilePage implements OnInit {
         if (response && response.status == 200 && response.body) {
           try {
             this.closeModal();
+
             this.presentAlert();
             this.clearInput();
             this.clearMsjDanger();
@@ -131,6 +138,7 @@ export class UserProfilePage implements OnInit {
       /^\s+|\s+$/g.test(confpassword)) {
 
       this.clearMsjDanger();
+
       this.isEmptyInputText.markAsTouched();
       return false;
     } else {
