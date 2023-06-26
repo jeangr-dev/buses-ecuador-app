@@ -3,7 +3,6 @@ import { DataSharingService } from '../../services/data-sharing.service';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ModalController, AlertController, NavController } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-profile',
@@ -33,9 +32,6 @@ export class UserProfilePage implements OnInit {
     private navCtrl: NavController) { 
 
     }
-
-  constructor(private dataSharingService: DataSharingService,
-    private http: HttpClient, private modalController: ModalController) { }
 
   ngOnInit() {
     this.initDataUser();
