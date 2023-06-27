@@ -4,7 +4,7 @@
     <div id="menu">
       <ion-menu-button></ion-menu-button>
     </div>
-    <ion-text class="title">Perfil de usuario</ion-text>
+      <ion-text class="title">Perfil de usuario</ion-text>
   </div>
 
   <div class="logo">
@@ -16,41 +16,61 @@
     <ion-grid style="--ion-grid-padding: 0;">
       <ion-row style="margin-bottom: 15px;">
         <ion-col size="auto">
-          <ion-text style="color: black; width: auto; ">Nombres: {{ names }}</ion-text>
+            <ng-container *ngIf="!isEditingNom; else editingTemplate1">
+              <ion-text class="texto">Nombres: {{ names }}</ion-text>
+            </ng-container>
+            <ng-template #editingTemplate1>
+              <ion-input class="texto" [(ngModel)]="names "></ion-input>
+            </ng-template>
         </ion-col>
         <ion-col  class="custom-col">
-          <ion-text (click)="editNames()" style="cursor: pointer; text-decoration: underline;
-                    color: #063940;">editar</ion-text>
-        </ion-col>
-      </ion-row>
-
-      <ion-row style="margin-bottom: 15px;">
-        <ion-col size="auto" >
-          <ion-text style="color: black; width: auto;">Nombre de usuario: {{ username }}</ion-text>
-        </ion-col>
-        <ion-col class="custom-col">
-          <ion-text (click)="editUsername()" style="cursor: pointer; text-decoration: underline;
-                    color: #063940;">editar</ion-text>
+          <ion-text (click)="cambiarEstado1()" style="cursor: pointer; text-decoration: underline;
+                    color: #063940;">{{ isEditingNom ? 'Guardar' : 'Editar' }}</ion-text>
         </ion-col>
       </ion-row>
 
       <ion-row style="margin-bottom: 15px;">
         <ion-col size="auto">
-          <ion-text style="color: black; width: auto;">Teléfono: {{ phone }}</ion-text>
+            <ng-container *ngIf="!isEditingUser; else editingTemplate2">
+              <ion-text class="texto">usuario: {{ username }}</ion-text>
+            </ng-container>
+            <ng-template #editingTemplate2>
+              <ion-input class="texto" [(ngModel)]="username "></ion-input>
+            </ng-template>
         </ion-col>
-        <ion-col class="custom-col">
-          <ion-text (click)="editPhone()" style="cursor: pointer; text-decoration: underline;
-                    color: #063940;;">editar</ion-text>
+        <ion-col  class="custom-col">
+          <ion-text (click)="cambiarEstado2()" style="cursor: pointer; text-decoration: underline;
+                    color: #063940;">{{ isEditingUser ? 'Guardar' : 'Editar' }}</ion-text>
         </ion-col>
       </ion-row>
 
-      <ion-row style="margin-bottom: 30px;">
+      <ion-row style="margin-bottom: 15px;">
         <ion-col size="auto">
-          <ion-text style="color: black; width: auto;">Correo Electrónico: {{ email }}</ion-text>
+            <ng-container *ngIf="!isEditingPhone; else editingTemplate3">
+              <ion-text class="texto">Telefono: {{ phone }}</ion-text>
+            </ng-container>
+            <ng-template #editingTemplate3>
+              <ion-input class="texto" [(ngModel)]="phone"></ion-input>
+            </ng-template>
         </ion-col>
-        <ion-col class="custom-col">
-          <ion-text (click)="editEmail()" style="cursor: pointer; text-decoration: underline;
-          color: #063940;">editar</ion-text>
+        <ion-col  class="custom-col">
+          <ion-text (click)="cambiarEstado3()" style="cursor: pointer; text-decoration: underline;
+                    color: #063940;">{{ isEditingPhone ? 'Guardar' : 'Editar' }}</ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 15px;">
+        <ion-col size="auto">
+            <ng-container *ngIf="!isEditingEmail; else editingTemplate4">
+              <ion-text class="texto">email: {{ email }}</ion-text>
+            </ng-container>
+            <ng-template #editingTemplate4>
+              <ion-input class="texto" [(ngModel)]="email"></ion-input>
+            </ng-template>
+        </ion-col>
+        <ion-col  class="custom-col">
+          <ion-text (click)="cambiarEstado4()" style="cursor: pointer; text-decoration: underline;
+                    color: #063940;">{{ isEditingEmail ? 'Guardar' : 'Editar' }}</ion-text>
         </ion-col>
       </ion-row>
 
