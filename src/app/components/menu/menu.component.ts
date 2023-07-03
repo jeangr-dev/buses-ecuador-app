@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
     { name: 'Inicio', image: 'assets/casa.svg', redirect:"home"},
     { name: 'Boletos Comprados', image: 'assets/boleto.svg', redirect:"#" },
     { name: 'Comprar Boletos', image: 'assets/compra.svg', redirect:"#" },
-    { name: 'Destinos', image: 'assets/destino.svg', redirect:"#" },
+    { name: 'Destinos', image: 'assets/destino.svg', redirect:"destinos-user" },
     { name: 'Perfil', image: 'assets/user.svg' , redirect:"user-profile"},
     { name: 'Cerrar Sesión', image: 'assets/cerrar.svg', redirect:"login" }
   ];

@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f3f3f3;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12%;
+  background-color: #063940;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 100%;
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Lora";
+  width: auto;
+  text-align: center;
+}
+
+ion-menu-button {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  font-size: 42px;
+  color: white;
+}
+
+.content {
+  margin: 5px;
+}
+
+.search {
+  width: 360px;
+  height: 45px;
+  margin-top: 10px;
+  margin-left: -6px;
+  --placeholder-color: black;
+  --border-radius: 10px;
+  --border-color: black;
+}
+
+.imgIcon {
+  margin-right: 10px;
+  width: 42px;
+  height: 42px;
+}
