@@ -20,11 +20,11 @@
               <ion-text class="texto">Nombres: {{ names }}</ion-text>
             </ng-container>
             <ng-template #editingTemplate1>
-              <ion-input class="texto" [(ngModel)]="names "></ion-input>
+              <ion-input class="texto" [(ngModel)]="names " pattern="[a-zA-Z]+" required></ion-input>
             </ng-template>
         </ion-col>
         <ion-col  class="custom-col">
-          <ion-text (click)="cambiarEstado1()" style="cursor: pointer; text-decoration: underline;
+          <ion-text (click)="editNames()" style="cursor: pointer; text-decoration: underline;
                     color: #063940;">{{ isEditingNom ? 'Guardar' : 'Editar' }}</ion-text>
         </ion-col>
       </ion-row>
@@ -35,11 +35,11 @@
               <ion-text class="texto">usuario: {{ username }}</ion-text>
             </ng-container>
             <ng-template #editingTemplate2>
-              <ion-input class="texto" [(ngModel)]="username "></ion-input>
+              <ion-input class="texto" [(ngModel)]="username " required></ion-input>
             </ng-template>
         </ion-col>
         <ion-col  class="custom-col">
-          <ion-text (click)="cambiarEstado2()" style="cursor: pointer; text-decoration: underline;
+          <ion-text (click)="editUsername()" style="cursor: pointer; text-decoration: underline;
                     color: #063940;">{{ isEditingUser ? 'Guardar' : 'Editar' }}</ion-text>
         </ion-col>
       </ion-row>
@@ -50,11 +50,11 @@
               <ion-text class="texto">Telefono: {{ phone }}</ion-text>
             </ng-container>
             <ng-template #editingTemplate3>
-              <ion-input class="texto" [(ngModel)]="phone"></ion-input>
+              <ion-input class="texto" [(ngModel)]="phone" pattern="[0-9]+" required></ion-input>
             </ng-template>
         </ion-col>
         <ion-col  class="custom-col">
-          <ion-text (click)="cambiarEstado3()" style="cursor: pointer; text-decoration: underline;
+          <ion-text (click)="editPhone()" style="cursor: pointer; text-decoration: underline;
                     color: #063940;">{{ isEditingPhone ? 'Guardar' : 'Editar' }}</ion-text>
         </ion-col>
       </ion-row>
@@ -65,14 +65,27 @@
               <ion-text class="texto">email: {{ email }}</ion-text>
             </ng-container>
             <ng-template #editingTemplate4>
-              <ion-input class="texto" [(ngModel)]="email"></ion-input>
+              <ion-input class="texto" [(ngModel)]="email" required></ion-input>
             </ng-template>
         </ion-col>
         <ion-col  class="custom-col">
-          <ion-text (click)="cambiarEstado4()" style="cursor: pointer; text-decoration: underline;
+          <ion-text (click)="editEmail()" style="cursor: pointer; text-decoration: underline;
                     color: #063940;">{{ isEditingEmail ? 'Guardar' : 'Editar' }}</ion-text>
         </ion-col>
       </ion-row>
+
+      <ion-text color="danger" *ngIf="isEmptyInputTextL.invalid && (isEmptyInputTextL.dirty || isEmptyInputTextL.touched)">
+        <ion-label *ngIf="isEmptyInputTextL.errors?.hasOwnProperty('required')">El campo parece estar vacio o contener digitos</ion-label>
+      </ion-text>
+      <ion-text color="danger" *ngIf="isEmptyInputTextD.invalid && (isEmptyInputTextD.dirty || isEmptyInputTextD.touched)">
+        <ion-label *ngIf="isEmptyInputTextD.errors?.hasOwnProperty('required')">Este campo debe contener solo digitos (10)</ion-label>
+      </ion-text>
+      <ion-text color="danger" *ngIf="isEmptyInputTextE.invalid && (isEmptyInputTextE.dirty || isEmptyInputTextE.touched)">
+        <ion-label *ngIf="isEmptyInputTextE.errors?.hasOwnProperty('required')">El campo parece estar vacio</ion-label>
+      </ion-text>
+      <ion-text color="danger" *ngIf="isEmptyInputEmail.invalid && (isEmptyInputEmail.dirty || isEmptyInputEmail.touched)">
+        <ion-label *ngIf="isEmptyInputEmail.errors?.hasOwnProperty('required')">El correo esta vacio o no es valido</ion-label>
+      </ion-text>
 
       <ion-row >
         <ion-col >
