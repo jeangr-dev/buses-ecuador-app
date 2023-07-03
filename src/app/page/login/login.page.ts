@@ -22,15 +22,23 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   isEmptyInput(username: string, password: string) {
- 
     if (!username || !password || /^\s+|\s+$/g.test(username) || /^\s+|\s+$/g.test(password)
           || !this.isEmptyInputText.invalid) {
-
+            
+            this.clearInput();
             this.isEmptyInputText.markAsTouched();
             return false;
     } else {
       return true;
     }
+  }
+
+  clearInput() {
+    this.username = '';
+    this.password = '';
+    this.isEmptyInputText.markAsUntouched();
+    this.wrongCredentials.markAsUntouched();
+
   }
 
   toSendData(dataUser: any) {
@@ -59,11 +67,13 @@ export class LoginPage implements OnInit {
             try {
               console.log(response.body);
               this.toSendData(response.body);
+              this.clearInput();
               this.navCtrl.navigateForward('/home');
             } catch (error) {
               console.error('Error al procesar la respuesta:', error);
             }
           } else {
+            this.clearInput();
             this.wrongCredentials.markAsTouched();
             console.error('Respuesta HTTP nula o vacía recibida');
           }
