@@ -18,7 +18,7 @@
         <ion-col>
           <ion-item style="width: 160px; border-radius: 8px; margin-top: 10px;">
             <ion-select interface="popover" placeholder="Provincia" style="margin-top: -10px; margin-bottom: -10px;">
-              <ion-select-option value="apples">Apples</ion-select-option>
+              <ion-select-option value="apples">Azuay</ion-select-option>
               <ion-select-option value="oranges">Oranges</ion-select-option>
               <ion-select-option value="bananas">Bananas</ion-select-option>
             </ion-select>
@@ -43,8 +43,8 @@
         <ion-col>
 
           <ion-list>
-            <ion-item-sliding *ngFor="let item of items" (press)="selectItem(item)">
-              <ion-item class="itemProd" id="open-modal" [class.selected]="isSelected(item)">
+            <ion-item-sliding *ngFor="let item of items">
+              <ion-item class="itemProd" id="open-modal">
                 <div class="imgIcon">
                   <ion-img src="assets/icon-autobus.png" slot="start"></ion-img>
                 </div>
@@ -59,6 +59,71 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <div>
+      <ion-modal #modal trigger="open-modal"  [showBackdrop]="showBackdrop" >
+        <ng-template>
+          <ion-content>
+            <div class="modal">
+              <div class="headModal">
+                <ion-text class="titleModal">Detalle Viaje </ion-text>
+              </div>
+  
+              <div class="icon-modal">
+                <ion-img src="assets/icon-autobus.png"></ion-img>
+              </div>
+  
+              <div>
+  
+                <ion-grid class="gridContent">
+  
+                  <ion-row>
+                    <ion-col>
+                      <ion-text>N° Bus{{num_bus}}</ion-text>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-text>Nombre Cooperativa{{nom_coop}}</ion-text>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-text>Placa{{placa_bus}}</ion-text>
+                    </ion-col>
+                  </ion-row>
+                  <br>
+                  <ion-row>
+                    <ion-col>
+                      <ion-text>Destino final{{destino_final}}</ion-text>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-text>Tipo de viaje{{tipo_viaje}}</ion-text>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-text>Paradas{{paradas}}</ion-text>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-text>Hora{{hora}}</ion-text>
+                    </ion-col>
+                  </ion-row>
+                
+                </ion-grid>
+                <ion-button class="btnModal"> Comprar Boleto </ion-button>
+  
+              </div>
+  
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </div>
 
   </div>
 

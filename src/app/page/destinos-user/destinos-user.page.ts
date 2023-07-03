@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-destinos-user',
@@ -6,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./destinos-user.page.scss'],
 })
 export class DestinosUserPage implements OnInit {
+
+  num_bus!: string;
+  nom_coop!: string;
+  placa_bus!: string;
+  destino_final!: string;
+  tipo_viaje!: string;
+  paradas!: string; 
+  hora!: string;
+
+
 
   items: any[] = [
     { id: 1, name: 'Item 1', description: 'Descripción del Item 1' },
@@ -15,22 +26,12 @@ export class DestinosUserPage implements OnInit {
 
   selectedItems: any[] = [];
 
+  showBackdrop: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  selectItem(item: any) {
-    const index = this.selectedItems.indexOf(item);
-    if (index > -1) {
-      this.selectedItems.splice(index, 1); // Deseleccionar elemento si ya está seleccionado
-    } else {
-      this.selectedItems.push(item); // Seleccionar elemento si no está seleccionado
-    }
-  }
-
-  isSelected(item: any): boolean {
-    return this.selectedItems.indexOf(item) > -1;
-  }
 
 }
