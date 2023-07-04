@@ -16,27 +16,17 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-item style="width: 160px; border-radius: 8px; margin-top: 10px;">
-            <ion-select interface="popover" placeholder="Provincia" style="margin-top: -10px; margin-bottom: -10px;">
-              <ion-select-option value="apples">Azuay</ion-select-option>
-              <ion-select-option value="oranges">Oranges</ion-select-option>
-              <ion-select-option value="bananas">Bananas</ion-select-option>
+          <ion-item style="width: 353px; border-radius: 8px; margin-top: 10px; border: 1px solid #063940;">
+            <ion-select interface="popover" placeholder="Cantón" style="margin-top: -10px; margin-bottom: -10px;" [(ngModel)]="selectedOption">
+              <ion-select-option *ngFor="let option of options" [value]="option">{{option}}</ion-select-option>
             </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item style="width: 160px; border-radius: 8px; margin-top: 10px;">
-            <ion-select interface="popover" placeholder="Cantón" style="margin-top: -10px; margin-bottom: -10px;">
-              <ion-select-option value="apples">Apples</ion-select-option>
-              <ion-select-option value="oranges">Oranges</ion-select-option>
-              <ion-select-option value="bananas">Bananas</ion-select-option>
-            </ion-select>
+            <ion-icon name="close-circle" class="clear-icon" (click)="clearSelection()" *ngIf="selectedOption"></ion-icon>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-searchbar class="search" show-clear-button="focus" placeholder="Buscar.."></ion-searchbar>
+          <ion-searchbar clearInput class="search" show-clear-button="focus" placeholder="Buscar.."></ion-searchbar>
         </ion-col>
       </ion-row>
       <ion-row>
