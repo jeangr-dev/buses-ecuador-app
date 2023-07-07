@@ -12,7 +12,7 @@ import { DataSharingService } from '../../services/data-sharing.service';
 export class LoginPage implements OnInit {
   username!: string;
   password!: string;
-  private receivedData: any;
+
   wrongCredentials = new FormControl('', Validators.required);
   isEmptyInputText = new FormControl('', Validators.required);
 
@@ -65,14 +65,10 @@ export class LoginPage implements OnInit {
         (response: HttpResponse<any>) => {
           if (response && response.status == 200 && response.body) {
             try {
-              const rolPers=response.body.rolPers;
+              console.log(response.body);
               this.toSendData(response.body);
               this.clearInput();
-              if(rolPers==="aprobador"){
-                this.navCtrl.navigateForward('/lista-boletos-user');
-              }else{
-                this.navCtrl.navigateForward('/home');
-              }
+              this.navCtrl.navigateForward('/home');
             } catch (error) {
               console.error('Error al procesar la respuesta:', error);
             }
