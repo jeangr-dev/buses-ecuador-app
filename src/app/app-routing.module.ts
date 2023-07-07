@@ -22,11 +22,7 @@ const routes: Routes = [
   {
     path: 'user-profile',
     loadChildren: () => import('./page/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
-  },  {
-    path: 'lista-boletos-user',
-    loadChildren: () => import('./page/lista-boletos-user/lista-boletos-user.module').then( m => m.ListaBoletosUserPageModule)
   },
-
 ];
 
 @NgModule({
