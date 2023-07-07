@@ -65,10 +65,14 @@ export class LoginPage implements OnInit {
         (response: HttpResponse<any>) => {
           if (response && response.status == 200 && response.body) {
             try {
-              console.log(response.body);
               this.toSendData(response.body);
               this.clearInput();
-              this.navCtrl.navigateForward('/home');
+              const rolPers=response.body.rolPers;
+              if(rolPers==="aprobador"){
+                this.navCtrl.navigateForward('/lista-boletos-user');
+              }else{
+                this.navCtrl.navigateForward('/home');
+              }
             } catch (error) {
               console.error('Error al procesar la respuesta:', error);
             }
