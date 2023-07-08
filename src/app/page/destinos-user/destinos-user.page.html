@@ -17,7 +17,8 @@
       <ion-row>
         <ion-col>
           <ion-item style="width: 353px; border-radius: 8px; margin-top: 10px; border: 1px solid #063940;">
-            <ion-select interface="popover" placeholder="Cantón" style="margin-top: -10px; margin-bottom: -10px;" [(ngModel)]="selectedOption">
+            <ion-select (ionChange)="filterRoutesToOrigin()" interface="popover" placeholder="Cantón"
+                        style="margin-top: -10px; margin-bottom: -10px;" [(ngModel)]="selectedOption">
               <ion-select-option *ngFor="let option of options" [value]="option">{{option}}</ion-select-option>
             </ion-select>
             <ion-icon name="close-circle" class="clear-icon" (click)="clearSelection()" *ngIf="selectedOption"></ion-icon>
@@ -33,14 +34,14 @@
         <ion-col>
 
           <ion-list>
-            <ion-item-sliding *ngFor="let item of items">
+            <ion-item-sliding *ngFor="let item of itemsRoutesFilter">
               <ion-item class="itemProd" id="open-modal">
                 <div class="imgIcon">
                   <ion-img src="assets/icon-autobus.png" slot="start"></ion-img>
                 </div>
                 <ion-label>
-                  <h2>{{ item.name }}</h2>
-                  <p>{{ item.description }}</p>
+                  <h2>{{ item.ciudadFinRuta }}</h2>
+                  <p>{{ item.precioRuta }}</p>
                 </ion-label>
               </ion-item>
             </ion-item-sliding>

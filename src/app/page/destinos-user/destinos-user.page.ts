@@ -9,8 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DestinosUserPage implements OnInit {
 
-  private urlRutas = 'http://localhost:8080/rutas/obtener-rutas';
-
   num_bus!: string;
   nom_coop!: string;
   placa_bus!: string;
@@ -21,19 +19,17 @@ export class DestinosUserPage implements OnInit {
 
   options!: any[];
   selectedOption: any;
+  private listObjIdFrec: any = []
 
-  items: any[] = [
-    { id: 1, name: 'Item 1', description: 'Descripción del Item 1' },
-    { id: 2, name: 'Item 2', description: 'Descripción del Item 2' },
-    { id: 3, name: 'Item 3', description: 'Descripción del Item 3' },
-  ];
+  itemsRoutesFilterAux: any[] = [];
+  itemsRoutesFilter: any[] = [];
+  private responseRoutes: any[] = [];
 
   selectedItems: any[] = [];
-
   showBackdrop: boolean = false;
 
   constructor(private http: HttpClient) {
-    this.recoverCities();
+    this.recoverCitiesOrigin();
 
   }
 
@@ -41,12 +37,13 @@ export class DestinosUserPage implements OnInit {
   }
 
   clearSelection() {
-    this.selectedOption = null; 
+    this.selectedOption = null;
+    this.itemsRoutesFilter = [];
   }
 
-  recoverCities() {
-    
-    this.http.get<any[]>(this.urlRutas).subscribe(
+  recoverCitiesOrigin() {
+    const urlRutas = 'http://localhost:8080/rutas/obtener-rutas';
+    this.http.get<any[]>(urlRutas).subscribe(
       (response) => {
         if (response !== null) {
           this.options = this.cleanOptionsCities(response);
@@ -63,6 +60,7 @@ export class DestinosUserPage implements OnInit {
     const listCities: any[] = [];
     const seenProperties: Set<any> = new Set();
     for (const json of response) {
+      this.getDetalleRuta(json['idRuta']);
       const property = json[propertyName];
       if (!seenProperties.has(property)) {
         seenProperties.add(property);
@@ -72,13 +70,54 @@ export class DestinosUserPage implements OnInit {
     return listCities;
   }
 
- 
+  getDetalleRuta(idRoute: any) {
 
-  mostrarDestinos() {
-    
-
-
+    const url = 'http://localhost:8080/rutas/obtener-detalle-de-ruta-completo-por-id/' + idRoute;
+    this.http.get<any[]>(url).subscribe(
+      (response) => {
+        if (response !== null) {
+          this.responseRoutes.push(response);
+        }
+      },
+      (error) => {
+        console.error('Error al recuperar detalle de rutas', error);
+      }
+    );
   }
 
+  getIdFrecOrigin() {
+    this.listObjIdFrec = [];
+    const seenProperties: Set<any> = new Set();
+    for (let object of this.responseRoutes) {
+      if (object.ciudadIniRuta === this.selectedOption && !seenProperties.has(object.idFrecRuta)) {
+        this.listObjIdFrec.push(object);
+        seenProperties.add(object.idFrecRuta);
+      }
+    }
+    console.log(this.listObjIdFrec);
+  }
+
+  filterRoutesToOrigin() {
+    this.itemsRoutesFilterAux = [];
+    this.getIdFrecOrigin();
+    for (let object of this.responseRoutes) {
+      for (let objidFrec of this.listObjIdFrec) {
+        if (object.idFrecRuta === objidFrec.idFrecRuta) {
+          this.itemsRoutesFilterAux.push(object);
+          this.excludelowestid(objidFrec.idRuta);
+        }
+      }
+
+    }
+  }
+
+  excludelowestid (idRuta: any) {
+    this.itemsRoutesFilter = [];
+    for (let obj of this.itemsRoutesFilterAux) {
+      if (obj.idRuta >= idRuta) {
+        this.itemsRoutesFilter.push(obj);
+      }
+    }
+  }
 
 }
