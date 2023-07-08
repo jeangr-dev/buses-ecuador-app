@@ -24,6 +24,7 @@ export class DestinosUserPage implements OnInit {
   itemsRoutesFilterAux: any[] = [];
   itemsRoutesFilter: any[] = [];
   private responseRoutes: any[] = [];
+  private listWithOutFilter: any[] = [];
 
   selectedItems: any[] = [];
   showBackdrop: boolean = false;
@@ -71,7 +72,6 @@ export class DestinosUserPage implements OnInit {
   }
 
   getDetalleRuta(idRoute: any) {
-
     const url = 'http://localhost:8080/rutas/obtener-detalle-de-ruta-completo-por-id/' + idRoute;
     this.http.get<any[]>(url).subscribe(
       (response) => {
@@ -111,12 +111,24 @@ export class DestinosUserPage implements OnInit {
     }
   }
 
-  excludelowestid (idRuta: any) {
+  excludelowestid(idRuta: any) {
     this.itemsRoutesFilter = [];
     for (let obj of this.itemsRoutesFilterAux) {
       if (obj.idRuta >= idRuta) {
         this.itemsRoutesFilter.push(obj);
       }
+    }
+    this.listWithOutFilter = this.itemsRoutesFilter;
+  }
+
+  onSearchChange(event: any) {
+    const searchTerm = event.target.value;
+    if (searchTerm.trim() !== '') {
+      this.itemsRoutesFilter = this.itemsRoutesFilter.filter(item =>
+        item.ciudadFinRuta.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else {
+      this.itemsRoutesFilter = this.listWithOutFilter;
     }
   }
 
