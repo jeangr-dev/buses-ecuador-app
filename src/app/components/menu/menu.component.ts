@@ -9,7 +9,7 @@ import { DataSharingService } from '../../services/data-sharing.service';
 export class MenuComponent implements OnInit {
   public items = [
     { name: 'Inicio', image: 'assets/casa.svg', redirect:"home"},
-    { name: 'Boletos Comprados', image: 'assets/boleto.svg', redirect:"#" },
+    { name: 'Boletos Comprados', image: 'assets/boleto.svg', redirect:"boletos-user" },
     { name: 'Comprar Boletos', image: 'assets/compra.svg', redirect:"#" },
     { name: 'Destinos', image: 'assets/destino.svg', redirect:"#" },
     { name: 'Perfil', image: 'assets/user.svg' , redirect:"user-profile"},

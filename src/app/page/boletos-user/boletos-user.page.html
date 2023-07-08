@@ -1,0 +1,46 @@
+<ion-content>
+    <div class="container">
+      <div class="head">
+        <div id="menu">
+          <ion-menu-button></ion-menu-button>
+        </div>
+          <ion-text class="title">Destinos</ion-text>
+      </div>
+    
+      <div class="content">
+        <ion-grid>
+          <ion-row style="margin-top: 5px;">
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-searchbar clearInput class="search" show-clear-button="focus" placeholder="Buscar por destino.."
+              ></ion-searchbar>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+    
+              <ion-list>
+                <ion-item-sliding *ngFor="let item of itemsRoutesFilter">
+                  <ion-item class="itemProd" id="open-modal">
+                    <div class="imgIcon">
+                      <ion-img src="assets/logoApp.png" slot="start"></ion-img>
+                    </div>
+                    <ion-label>
+                      <h2>{{ item.ciudadFinRuta }}</h2>
+                      <p>{{item.numBus}} {{ item.cooperativa }}</p>
+                      <p>{{item.fechaHora}}</p>
+                    </ion-label>
+                  </ion-item>
+                </ion-item-sliding>
+              </ion-list>
+    
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    
+      </div>
+    
+    </div>
+    </ion-content>
+    

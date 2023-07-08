@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'lista-boletos-user',
     loadChildren: () => import('./page/lista-boletos-user/lista-boletos-user.module').then( m => m.ListaBoletosUserPageModule)
   },
+  {
+    path: 'boletos-user',
+    loadChildren: () => import('./page/boletos-user/boletos-user.module').then( m => m.BoletosUserPageModule)
+  },
 
 ];
 
