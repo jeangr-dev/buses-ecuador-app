@@ -12,6 +12,7 @@ import { DataSharingService } from '../../services/data-sharing.service';
 export class LoginPage implements OnInit {
   username!: string;
   password!: string;
+  usuarioLogueado: boolean = false;
 
   wrongCredentials = new FormControl('', Validators.required);
   isEmptyInputText = new FormControl('', Validators.required);
@@ -68,11 +69,12 @@ export class LoginPage implements OnInit {
               this.toSendData(response.body);
               this.clearInput();
               const rolPers=response.body.rolPers;
-              if(rolPers==="aprobador"){
+              if(rolPers==="aprobador"){              
                 this.navCtrl.navigateForward('/lista-boletos-user');
               }else{
                 this.navCtrl.navigateForward('/home');
               }
+              console.log(this.usuarioLogueado);
             } catch (error) {
               console.error('Error al procesar la respuesta:', error);
             }

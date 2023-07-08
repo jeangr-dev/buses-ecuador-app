@@ -21,15 +21,31 @@
             </ion-row>
           </ion-grid>
       </div>
-      <ion-menu-toggle autoHide="true">
-        <div class="paginas" *ngFor="let item of items"
-        [routerLink]="item.redirect">
-         <hr>
-           <div class="logo1">
-             <img [src]="item.image" alt="Imagen">
-           </div>&nbsp;<div class="nombre">{{item.name}}</div>
-       </div>
-      </ion-menu-toggle>
+      <div *ngIf="usuarioLogueado; then contenidoVerdadero else contenidoFalso"></div>
+
+      <ng-template #contenidoVerdadero>
+        <ion-menu-toggle autoHide="true">
+          <div class="paginas" *ngFor="let boleto of boletos" [routerLink]="boleto.redirect">
+            <hr>
+            <div class="logo1">
+              <img [src]="boleto.image" alt="Imagen">
+            </div>&nbsp;<div class="nombre">{{boleto.name}}</div>
+          </div>
+        </ion-menu-toggle>
+      </ng-template>
+      
+      <ng-template #contenidoFalso>
+        <ion-menu-toggle autoHide="true">
+          <div class="paginas" *ngFor="let item of items" [routerLink]="item.redirect">
+            <hr>
+            <div class="logo1">
+              <img [src]="item.image" alt="Imagen">
+            </div>&nbsp;<div class="nombre">{{item.name}}</div>
+          </div>
+        </ion-menu-toggle>
+      </ng-template>
+      
+
       <br>
       <hr>
     </div>
