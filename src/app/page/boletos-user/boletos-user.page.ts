@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,9 +12,11 @@ export class BoletosUserPage implements OnInit {
 
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
   
   ngOnInit() {
   }
+
+  
 
 }
