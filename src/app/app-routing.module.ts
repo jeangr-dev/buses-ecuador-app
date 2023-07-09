@@ -27,11 +27,18 @@ const routes: Routes = [
     path: 'lista-boletos-user',
     loadChildren: () => import('./page/lista-boletos-user/lista-boletos-user.module').then( m => m.ListaBoletosUserPageModule)
   },
+
+  {
+    path: 'boletos-user',
+    loadChildren: () => import('./page/boletos-user/boletos-user.module').then( m => m.BoletosUserPageModule)
+  },
+
    {
     path: 'destinos-user',
     loadChildren: () => import('./page/destinos-user/destinos-user.module').then( m => m.DestinosUserPageModule)
   },
 ];
+
 
 @NgModule({
   imports: [

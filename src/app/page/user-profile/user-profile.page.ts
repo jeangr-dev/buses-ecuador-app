@@ -27,7 +27,6 @@ export class UserProfilePage implements OnInit {
   isEmptyInputTextE = new FormControl('', Validators.required);
   isEmptyInputEmail = new FormControl('', Validators.required);
 
-
   showBackdrop: boolean = false;
 
   passwordCurrent!: string;
