@@ -36,7 +36,8 @@
 
           <ion-list>
             <ion-item-sliding *ngFor="let item of itemsRoutesFilter">
-              <ion-item class="itemProd" id="open-modal">
+              <ion-item class="itemProd" id="open-modal"
+              (ionHold)="selectedItem = item; openModal()">
                 <div class="imgIcon">
                   <ion-img src="assets/icon-autobus.png" slot="start"></ion-img>
                 </div>
@@ -53,7 +54,7 @@
     </ion-grid>
 
     <div>
-      <ion-modal #modal trigger="open-modal"  [showBackdrop]="showBackdrop" >
+      <ion-modal #modal trigger="open-modal" [showBackdrop]="showBackdrop" >
         <ng-template>
           <ion-content>
             <div class="modal">
@@ -71,38 +72,33 @@
   
                   <ion-row>
                     <ion-col>
-                      <ion-text>N° Bus{{num_bus}}</ion-text>
+                      <ion-text>N° Bus: {{selectedItem?.numBus}}</ion-text>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col>
-                      <ion-text>Nombre Cooperativa{{nom_coop}}</ion-text>
+                      <ion-text>Nombre Cooperativa: {{selectedItem?.nombreCoop}}</ion-text>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col>
-                      <ion-text>Placa{{placa_bus}}</ion-text>
+                      <ion-text>Placa: {{selectedItem?.placaBus}}</ion-text>
                     </ion-col>
                   </ion-row>
                   <br>
                   <ion-row>
                     <ion-col>
-                      <ion-text>Destino final{{destino_final}}</ion-text>
+                      <ion-text>Destino final: {{selectedItem?.ciudadFinRuta}}</ion-text>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col>
-                      <ion-text>Tipo de viaje{{tipo_viaje}}</ion-text>
+                      <ion-text>Hora salida: {{selectedItem?.fechaHoraSaliRuta}}</ion-text>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col>
-                      <ion-text>Paradas{{paradas}}</ion-text>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>Hora{{hora}}</ion-text>
+                      <ion-text>Hora llegada: {{selectedItem?.fechaHoraLlegRuta}}</ion-text>
                     </ion-col>
                   </ion-row>
                 

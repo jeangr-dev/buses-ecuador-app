@@ -26,15 +26,23 @@ export class DestinosUserPage implements OnInit {
   private responseRoutes: any[] = [];
   private listWithOutFilter: any[] = [];
 
-  selectedItems: any[] = [];
-  showBackdrop: boolean = false;
+  selectedItem: any;
+  showBackdrop: boolean = true;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private modalController: ModalController) {
     this.recoverCitiesOrigin();
 
   }
 
   ngOnInit() {
+  }
+
+  openModal() {
+    this.showBackdrop = true;
+  }
+
+  closeModal() {
+    this.showBackdrop = false;
   }
 
   clearSelection() {
