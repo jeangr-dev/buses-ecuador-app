@@ -1,5 +1,6 @@
 import { HttpClient,HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
@@ -19,18 +20,24 @@ export class BoletosUserPage implements OnInit {
   nombreRuta!:string;
   marcaChasisBus!:string;
   nombreCoop!:string;
+  qrCodeValue!: string;
+  showBackdrop: boolean = false;
   public itemsRoutesFilter=[
     { ciudadFinRuta: 'Nombre destino', numBus:"1", cooperativa:"Santa",fechaHora:"fecha y hora"},
 
   ];
 
-  constructor(private http: HttpClient,private dataSharingService: DataSharingService) { }
+  constructor(private http: HttpClient,private dataSharingService: DataSharingService,private modalController: ModalController) { }
   
   ngOnInit() {
     this.initBoletos();
     this.getBoletos();
+    
   }
-
+  
+  toggleBackdrop() {
+    this.showBackdrop = !this.showBackdrop;
+  }
 
   getBoletos() {
     const url = 'http://localhost:8080/boletos/obtener-boletos'; 
@@ -59,8 +66,8 @@ export class BoletosUserPage implements OnInit {
               (response: HttpResponse<any>) => {
                 boleto.nombreCoop=response.body.nombreCoop;
                 this.boletosConInfoAdicional.push(boleto);
+                this.generarQRCode(this.boletosConInfoAdicional);
                 this.backupBoletosConInfoAdicional = [...this.boletosConInfoAdicional];
-
             });
         });
         });   
@@ -83,5 +90,20 @@ export class BoletosUserPage implements OnInit {
       // Si no hay un término de búsqueda, restaura la lista original
       this.boletosConInfoAdicional = [...this.backupBoletosConInfoAdicional];
     }
+  }
+
+  generarQRCode(boleto: any[]) {
+    // Obtener los datos necesarios para generar el código QR a partir del objeto 'boleto'
+    const qrCodeData = JSON.stringify(boleto);
+    console.log(qrCodeData);
+    // Asignar el valor a la propiedad 'qrCodeValue' para mostrar el código QR en el HTML
+    this.qrCodeValue = qrCodeData;
+  
+  }
+
+  async closeModal() {
+    await this.modalController.dismiss({
+      dismissed: true
+    });
   }
 }
