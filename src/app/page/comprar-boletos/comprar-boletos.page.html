@@ -1,0 +1,229 @@
+<ion-content>
+  <div class="container">
+    <div class="head">
+      <div id="menu">
+        <ion-menu-button></ion-menu-button>
+      </div>
+      <ion-text class="title">Compra de Boletos</ion-text>
+    </div>
+
+    <div class="content">
+      <ion-grid>
+        <ion-row>
+          <ion-col
+            style="right: -10px; top: 20px; color: #063940; font-weight: bold"
+          >
+            <ion-text>Boleto/s</ion-text>
+          </ion-col>
+          <ion-col
+            style="left: 110px; top: 10px; color: #063940; font-size: 40px"
+          >
+            <ion-text style="font-size: 12px; font-weight: bold">{{cantAsienCompr}}</ion-text>
+            <ion-icon name="cart-outline" (click)="openModal()"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col
+            style="right: -10px; top: 15px; color: #063940; font-weight: bold"
+          >
+            <ion-text>Fecha y Hora: {{fecHorSal}}</ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col
+            style="
+              top: 40px;
+              left: 125px;
+              font-size: 60px;
+              font-weight: bolder;
+              color: #063940;
+            "
+          >
+            <ion-text>{{totalPagar}}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col
+            style="
+              top: 25px;
+              left: 170px;
+              font-size: 12px;
+              color: #063940;
+              font-weight: bolder;
+            "
+          >
+            <ion-text>Total</ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="top: 70px">
+            <ion-button (click)="iniciarPago()" class="btnComprar">Pagar con PayPal</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div>
+        <ion-modal #modal [showBackdrop]="showBackdrop">
+          <ng-template>
+            <ion-content>
+              <div class="modal">
+                <div class="headModal">
+                  <ion-text class="titleModal">Detalle Boleto </ion-text>
+                </div>
+
+                <div>
+                  <ion-grid class="gridContent">
+                    <ion-row>
+                      <ion-col
+                        style="
+                          top: 10px;
+                          left: 12px;
+                          font-size: 15px;
+                          font-weight: bolder;
+                          color: #063940;
+                        "
+                      >
+                        <ion-text>Elegir asiento/s</ion-text>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col
+                        style="
+                          top: 10px;
+                          left: 12px;
+                          font-size: 10px;
+                          font-weight: bolder;
+                          color: #063940;
+                        "
+                      >
+                        <ion-text>Categoría VIP - ${{precVIP}}</ion-text>
+                      </ion-col>
+
+                      <ion-col
+                        style="
+                          top: 10px;
+                          left: 12px;
+                          font-size: 10px;
+                          font-weight: bolder;
+                          color: #063940;
+                        "
+                      >
+                        <ion-text>Categoría General - ${{precGen}} </ion-text>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col>
+                        <ion-grid>
+                          <ion-row *ngFor="let row of matrizVIP">
+                            <ion-col
+                              *ngFor="let cell of row"
+                              (click)="seleccionarCeldaVIP(cell)"
+                            >
+                              <ion-icon
+                                style="margin-bottom: -10px"
+                                name="{{ cell.icono }}"
+                              ></ion-icon>
+                              <p
+                                style="
+                                  font-size: 10px;
+                                  margin-bottom: -10px;
+                                  margin-left: 5px;
+                                "
+                              >
+                                {{ cell.identificador }}
+                              </p>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-col>
+
+                      <ion-col>
+                        <ion-grid>
+                          <ion-row *ngFor="let row of matrizGen">
+                            <ion-col size="3"
+                              *ngFor="let cell of row"
+                              (click)="seleccionarCeldaGen(cell)"
+                            >
+                              <ion-icon
+                                style="margin-bottom: -10px"
+                                name="{{ cell.icono }}"
+                              ></ion-icon>
+                              <p
+                                style="
+                                  font-size: 10px;
+                                  margin-bottom: -10px;
+                                  margin-left: 5px;
+                                "
+                              >
+                                {{ cell.identificador }}
+                              </p>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col
+                        style="
+                          top: 10px;
+                          left: 12px;
+                          font-size: 15px;
+                          font-weight: bolder;
+                          color: #063940;
+                        "
+                      >
+                        <ion-text>Cantidad asientos: {{cantAsien}}</ion-text>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col
+                        style="
+                          top: 10px;
+                          left: 12px;
+                          font-size: 15px;
+                          font-weight: bolder;
+                          color: #063940;
+                        "
+                      >
+                        <ion-text>Total: ${{total}}</ion-text>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                  <ion-button class="btnModal" (click)="closeModal()"> Pagar </ion-button>
+                </div>
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+
+      <div>
+        <ion-modal #modalQR [showBackdrop]="showBackdrop">
+          <ng-template >
+            <ion-content>
+    
+              <div class="modal">
+                <div class="headModal">
+                  <ion-text class="titleModal">QR</ion-text>
+                </div>
+                <ion-item style="margin-top: 18px;">
+                  <qrcode [qrdata]="qrCodeValue" [width]="190" [errorCorrectionLevel]="'M'"></qrcode>
+                </ion-item>
+                <ion-button (click)="closeModalQR()" class="btnModal">Confirmar</ion-button>             
+              </div>
+              <ion-alert class="custom-alert"></ion-alert>            
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    
+    </div>
+  </div>
+</ion-content>

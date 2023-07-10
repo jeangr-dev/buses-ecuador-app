@@ -36,7 +36,11 @@ const routes: Routes = [
    {
     path: 'destinos-user',
     loadChildren: () => import('./page/destinos-user/destinos-user.module').then( m => m.DestinosUserPageModule)
+  },  {
+    path: 'comprar-boletos',
+    loadChildren: () => import('./page/comprar-boletos/comprar-boletos.module').then( m => m.ComprarBoletosPageModule)
   },
+
 ];
 
 

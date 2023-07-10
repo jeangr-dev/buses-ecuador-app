@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class DataSharingService {
 
   private userData: any;
+  private dataViaje: any;
 
   constructor() { }
 
@@ -15,6 +16,14 @@ export class DataSharingService {
 
   getJsonData() {
     return this.userData;
+  }
+
+  setDataViaje(data: any) {
+    this.dataViaje = data;
+  }
+
+  getDataViaje() {
+    return this.dataViaje;
   }
 
 }
