@@ -1,13 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>lista-boletos-user</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">lista-boletos-user</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<ion-content>
+    <div class="container">
+      <div class="head">
+        <div id="menu">
+          <ion-menu-button></ion-menu-button>
+        </div>
+        <ion-text class="title">Gestion Pasajeros</ion-text>
+      </div>
+      <div class="content">
+        <ion-grid>
+          <ion-row style="margin-top: 5px;">
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-searchbar (ionInput)="onSearchChange($event)" clearInput class="search" show-clear-button="focus" placeholder="Buscar por destino.."
+              ></ion-searchbar>
+            </ion-col>
+            <ion-col>
+              <ion-item style="width: 353px; border-radius: 8px; margin-top: 10px; border: 1px solid #063940;">
+                <ion-select (ionChange)="getBoletosBuses()" interface="popover" placeholder="Bus" [(ngModel)]="selectedValue">
+                  <ion-select-option *ngFor="let option of options" [value]=option.id>{{option.Nombre}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-list>
+                <ion-item-sliding *ngFor="let boleto of boletosConInfoAdicional">              
+                  <ion-item class="itemProd" id="open-modal" >
+                    <ion-checkbox [(ngModel)]="boleto.isChecked" aria-label="Mi etiqueta de checkbox" slot="end"></ion-checkbox>
+                    <div class="imgIcon">
+                      <ion-img src="assets/logoApp.png" slot="start"></ion-img>
+                    </div>
+                    <ion-label>
+                      <h2>Tipo de asiento: {{ boleto.tipoBoleto }}</h2>
+                      <p>Numero de asiento: {{ boleto.numBoleto }} </p>
+                      <p>{{ boleto.placaBus }}</p>
+                    </ion-label>       
+                  </ion-item>
+                  <div>
+                  </div>
+                </ion-item-sliding>          
+              </ion-list>          
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </ion-content>
