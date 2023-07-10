@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
+import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-destinos-user',
@@ -26,23 +27,28 @@ export class DestinosUserPage implements OnInit {
   private responseRoutes: any[] = [];
   private listWithOutFilter: any[] = [];
 
+  @ViewChild('modal') modal!: IonModal;
   selectedItem: any;
-  showBackdrop: boolean = true;
+  showBackdrop: boolean = false;
 
   constructor(private http: HttpClient, private modalController: ModalController) {
     this.recoverCitiesOrigin();
-
   }
 
   ngOnInit() {
   }
 
-  openModal() {
-    this.showBackdrop = true;
+  toggleBackdrop() {
+    this.showBackdrop = !this.showBackdrop;
+  }
+
+  openModal(item: any) {
+    this.selectedItem = item;
+    this.modal.present();
   }
 
   closeModal() {
-    this.showBackdrop = false;
+    this.modal.dismiss();
   }
 
   clearSelection() {
@@ -102,7 +108,6 @@ export class DestinosUserPage implements OnInit {
         seenProperties.add(object.idFrecRuta);
       }
     }
-    console.log(this.listObjIdFrec);
   }
 
   filterRoutesToOrigin() {
@@ -115,7 +120,6 @@ export class DestinosUserPage implements OnInit {
           this.excludelowestid(objidFrec.idRuta);
         }
       }
-
     }
   }
 
