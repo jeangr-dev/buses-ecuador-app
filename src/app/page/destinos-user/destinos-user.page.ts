@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController, IonModal } from '@ionic/angular';
+import { IonModal, NavController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
+import { DataSharingService } from '../../services/data-sharing.service';
 
 @Component({
   selector: 'app-destinos-user',
@@ -30,7 +31,8 @@ export class DestinosUserPage implements OnInit {
   selectedItem: any;
   showBackdrop: boolean = false;
 
-  constructor(private http: HttpClient, private modalController: ModalController) {
+  constructor(private http: HttpClient, private navCtrl: NavController,
+                private dataSharingService: DataSharingService) {
     this.recoverCitiesOrigin();
   }
 
@@ -141,6 +143,13 @@ export class DestinosUserPage implements OnInit {
     } else {
       this.itemsRoutesFilter = this.listWithOutFilter;
     }
+  }
+
+  onClickComprBoleto() {
+    this.dataSharingService.setDataViaje(this.selectedItem);
+    console.log(this.selectedItem);
+    this.navCtrl.navigateForward('/comprar-boletos');
+    this.closeModal();
   }
 
 }

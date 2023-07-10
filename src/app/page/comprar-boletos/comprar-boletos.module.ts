@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ComprarBoletosPageRoutingModule } from './comprar-boletos-routing.module';
 
 import { ComprarBoletosPage } from './comprar-boletos.page';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComprarBoletosPageRoutingModule
+    ComprarBoletosPageRoutingModule,
+    QRCodeModule
   ],
   declarations: [ComprarBoletosPage]
 })

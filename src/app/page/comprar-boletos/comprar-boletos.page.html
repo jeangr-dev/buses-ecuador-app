@@ -18,7 +18,7 @@
           <ion-col
             style="left: 110px; top: 10px; color: #063940; font-size: 40px"
           >
-            <ion-text style="font-size: 12px; font-weight: bold">1</ion-text>
+            <ion-text style="font-size: 12px; font-weight: bold">{{cantAsienCompr}}</ion-text>
             <ion-icon name="cart-outline" (click)="openModal()"></ion-icon>
           </ion-col>
         </ion-row>
@@ -27,7 +27,7 @@
           <ion-col
             style="right: -10px; top: 15px; color: #063940; font-weight: bold"
           >
-            <ion-text>Fecha y Hora: </ion-text>
+            <ion-text>Fecha y Hora: {{fecHorSal}}</ion-text>
           </ion-col>
         </ion-row>
 
@@ -41,7 +41,7 @@
               color: #063940;
             "
           >
-            <ion-text>0.00</ion-text>
+            <ion-text>{{totalPagar}}</ion-text>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -60,7 +60,7 @@
 
         <ion-row>
           <ion-col style="top: 70px">
-            <ion-button class="btnComprar">Pagar con PayPal</ion-button>
+            <ion-button (click)="iniciarPago()" class="btnComprar">Pagar con PayPal</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -100,7 +100,7 @@
                           color: #063940;
                         "
                       >
-                        <ion-text>Categoría VIP - $0.00</ion-text>
+                        <ion-text>Categoría VIP - ${{precVIP}}</ion-text>
                       </ion-col>
 
                       <ion-col
@@ -112,7 +112,7 @@
                           color: #063940;
                         "
                       >
-                        <ion-text>Categoría General - $0.00 </ion-text>
+                        <ion-text>Categoría General - ${{precGen}} </ion-text>
                       </ion-col>
                     </ion-row>
 
@@ -145,7 +145,7 @@
                       <ion-col>
                         <ion-grid>
                           <ion-row *ngFor="let row of matrizGen">
-                            <ion-col
+                            <ion-col size="3"
                               *ngFor="let cell of row"
                               (click)="seleccionarCeldaGen(cell)"
                             >
@@ -178,7 +178,7 @@
                           color: #063940;
                         "
                       >
-                        <ion-text>Cantidad asientos 00</ion-text>
+                        <ion-text>Cantidad asientos: {{cantAsien}}</ion-text>
                       </ion-col>
                     </ion-row>
 
@@ -192,17 +192,38 @@
                           color: #063940;
                         "
                       >
-                        <ion-text>Total: $0.00</ion-text>
+                        <ion-text>Total: ${{total}}</ion-text>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
-                  <ion-button class="btnModal"> Pagar </ion-button>
+                  <ion-button class="btnModal" (click)="closeModal()"> Pagar </ion-button>
                 </div>
               </div>
             </ion-content>
           </ng-template>
         </ion-modal>
       </div>
+
+      <div>
+        <ion-modal #modalQR [showBackdrop]="showBackdrop">
+          <ng-template >
+            <ion-content>
+    
+              <div class="modal">
+                <div class="headModal">
+                  <ion-text class="titleModal">QR</ion-text>
+                </div>
+                <ion-item style="margin-top: 18px;">
+                  <qrcode [qrdata]="qrCodeValue" [width]="190" [errorCorrectionLevel]="'M'"></qrcode>
+                </ion-item>
+                <ion-button (click)="closeModalQR()" class="btnModal">Confirmar</ion-button>             
+              </div>
+              <ion-alert class="custom-alert"></ion-alert>            
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    
     </div>
   </div>
 </ion-content>
