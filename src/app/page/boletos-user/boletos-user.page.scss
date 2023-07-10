@@ -53,8 +53,6 @@
     height: 42px;
   }
   
-
-  
   .gridContent {
     margin-top: 10px;
     margin-left: 3%;
@@ -72,11 +70,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10%;
+    height: 15%;
     background-color: #063940;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     width: 100%;
+  }
+
+  .btnModal {
+    --border-radius: 8px;
+    width: 225px;
+    height: 40px;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: smaller;
+    --color: white;
+    --background: #063940;
+    --background-activated: #47667b;
   }
   
   .titleModal {
@@ -93,7 +103,7 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    background-color: #fff;
+    background-color: #f3f3f3;
   }
   
   br {

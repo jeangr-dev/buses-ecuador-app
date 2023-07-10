@@ -16,5 +16,14 @@ export class HomePage implements OnInit {
   onClickDestinos() {
     this.navCtrl.navigateForward('/destinos-user');
   }
+  onClickBoletosCompr() {
+    this.navCtrl.navigateForward('/boletos-user');
+  }
+  onClickComprBoletos() {
+    this.navCtrl.navigateForward('/comprar-boletos');
+  }
+  onClickLogout() {
+    this.navCtrl.navigateForward('/login');
+  }
 
 }

@@ -6,9 +6,9 @@
       </div>
       <ion-text class="title">Inicio</ion-text>
     </div>
-    <ion-button class="comprado">Boletos Comprados</ion-button>
-    <ion-button class="comprar">Comprar Boleto</ion-button>
+    <ion-button class="comprado" (click)="onClickBoletosCompr()">Boletos Comprados</ion-button>
+    <ion-button class="comprar" (click)="onClickComprBoletos()">Comprar Boleto</ion-button>
     <ion-button class="destino" (click)="onClickDestinos()">Destino</ion-button>
-    <ion-button class="destino">Cerrar Sesion</ion-button>
+    <ion-button class="destino" (click)="onClickLogout()">Cerrar Sesion</ion-button>
   </div>
 </ion-content>

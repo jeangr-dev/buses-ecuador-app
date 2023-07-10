@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, IonModal } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
-import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-destinos-user',
