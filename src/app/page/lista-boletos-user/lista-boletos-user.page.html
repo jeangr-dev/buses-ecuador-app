@@ -12,23 +12,30 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-searchbar  clearInput class="search" show-clear-button="focus" placeholder="Buscar por destino.."
+              <ion-searchbar (ionInput)="onSearchChange($event)" clearInput class="search" show-clear-button="focus" placeholder="Buscar por destino.."
               ></ion-searchbar>
+            </ion-col>
+            <ion-col>
+              <ion-item style="width: 353px; border-radius: 8px; margin-top: 10px; border: 1px solid #063940;">
+                <ion-select (ionChange)="getBoletosBuses()" interface="popover" placeholder="Bus" [(ngModel)]="selectedValue">
+                  <ion-select-option *ngFor="let option of options" [value]=option.id>{{option.Nombre}}</ion-select-option>
+                </ion-select>
+              </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
               <ion-list>
-                <ion-item-sliding  *ngFor="let item of itemsRoutesFilter">              
+                <ion-item-sliding *ngFor="let boleto of boletosConInfoAdicional">              
                   <ion-item class="itemProd" id="open-modal" >
-                    <ion-checkbox slot="end"></ion-checkbox>
+                    <ion-checkbox [(ngModel)]="boleto.isChecked" aria-label="Mi etiqueta de checkbox" slot="end"></ion-checkbox>
                     <div class="imgIcon">
                       <ion-img src="assets/logoApp.png" slot="start"></ion-img>
                     </div>
                     <ion-label>
-                      <h2>{{ item.ciudadFinRuta }}</h2>
-                      <p>{{ item.numBus }} {{ item.cooperativa }}</p>
-                      <p>{{ item.fechaHora }}</p>
+                      <h2>Tipo de asiento: {{ boleto.tipoBoleto }}</h2>
+                      <p>Numero de asiento: {{ boleto.numBoleto }} </p>
+                      <p>{{ boleto.placaBus }}</p>
                     </ion-label>       
                   </ion-item>
                   <div>
