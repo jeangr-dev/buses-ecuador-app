@@ -1,123 +1,156 @@
 <ion-content>
-<div class="container">
-  <div class="head">
-    <div id="menu">
-      <ion-menu-button></ion-menu-button>
-    </div>
+  <div class="container">
+    <div class="head">
+      <div id="menu">
+        <ion-menu-button></ion-menu-button>
+      </div>
       <ion-text class="title">Destinos</ion-text>
-  </div>
-
-  <div class="content">
-    <ion-grid>
-      <ion-row style="margin-top: 5px;">
-        <ion-col>
-          <ion-text style="color: #063940; font-weight: bold; ">Seleccione Origen</ion-text>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-item style="width: 353px; border-radius: 8px; margin-top: 10px; border: 1px solid #063940;">
-            <ion-select (ionChange)="filterRoutesToOrigin()" interface="popover" placeholder="Cantón"
-                        style="margin-top: -10px; margin-bottom: -10px;" [(ngModel)]="selectedOption">
-              <ion-select-option *ngFor="let option of options" [value]="option">{{option}}</ion-select-option>
-            </ion-select>
-            <ion-icon name="close-circle" class="clear-icon" (click)="clearSelection()" *ngIf="selectedOption"></ion-icon>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-searchbar clearInput class="search" show-clear-button="focus" placeholder="Buscar por destino.."
-          (ionInput)="onSearchChange($event)"></ion-searchbar>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-
-          <ion-list>
-            <ion-item-sliding *ngFor="let item of itemsRoutesFilter">
-              <ion-item class="itemProd" id="open-modal">
-                <div class="imgIcon">
-                  <ion-img src="assets/icon-autobus.png" slot="start"></ion-img>
-                </div>
-                <ion-label>
-                  <h2>{{ item.ciudadFinRuta }}</h2>
-                  <p>{{ item.nombreCoop }}</p>
-                </ion-label>
-              </ion-item>
-            </ion-item-sliding>
-          </ion-list>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <div>
-      <ion-modal #modal trigger="open-modal"  [showBackdrop]="showBackdrop" >
-        <ng-template>
-          <ion-content>
-            <div class="modal">
-              <div class="headModal">
-                <ion-text class="titleModal">Detalle Viaje </ion-text>
-              </div>
-  
-              <div class="icon-modal">
-                <ion-img src="assets/icon-autobus.png"></ion-img>
-              </div>
-  
-              <div>
-  
-                <ion-grid class="gridContent">
-  
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>N° Bus{{num_bus}}</ion-text>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>Nombre Cooperativa{{nom_coop}}</ion-text>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>Placa{{placa_bus}}</ion-text>
-                    </ion-col>
-                  </ion-row>
-                  <br>
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>Destino final{{destino_final}}</ion-text>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>Tipo de viaje{{tipo_viaje}}</ion-text>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>Paradas{{paradas}}</ion-text>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-text>Hora{{hora}}</ion-text>
-                    </ion-col>
-                  </ion-row>
-                
-                </ion-grid>
-                <ion-button class="btnModal"> Comprar Boleto </ion-button>
-  
-              </div>
-  
-            </div>
-          </ion-content>
-        </ng-template>
-      </ion-modal>
     </div>
 
-  </div>
+    <div class="content">
+      <ion-grid>
+        <ion-row style="margin-top: 5px">
+          <ion-col>
+            <ion-text style="color: #063940; font-weight: bold"
+              >Seleccione Origen</ion-text
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item
+              style="
+                width: 353px;
+                border-radius: 8px;
+                margin-top: 10px;
+                border: 1px solid #063940;
+              "
+            >
+              <ion-select
+                (ionChange)="filterRoutesToOrigin()"
+                interface="popover"
+                placeholder="Cantón"
+                style="margin-top: -10px; margin-bottom: -10px"
+                [(ngModel)]="selectedOption"
+              >
+                <ion-select-option
+                  *ngFor="let option of options"
+                  [value]="option"
+                  >{{option}}</ion-select-option
+                >
+              </ion-select>
+              <ion-icon
+                name="close-circle"
+                class="clear-icon"
+                (click)="clearSelection()"
+                *ngIf="selectedOption"
+              ></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-searchbar
+              clearInput
+              class="search"
+              show-clear-button="focus"
+              placeholder="Buscar por destino.."
+              (ionInput)="onSearchChange($event)"
+            ></ion-searchbar>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item-sliding *ngFor="let item of itemsRoutesFilter">
+                <ion-item
+                  class="itemProd"
+                  id="open-modal"
+                  (click)="openModal(item)"
+                >
+                  <div class="imgIcon">
+                    <ion-img
+                      src="assets/icon-autobus.png"
+                      slot="start"
+                    ></ion-img>
+                  </div>
+                  <ion-label>
+                    <h2>{{ item.ciudadFinRuta }}</h2>
+                    <p>{{ item.nombreCoop }}</p>
+                  </ion-label>
+                </ion-item>
+              </ion-item-sliding>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-</div>
+      <div>
+        <ion-modal #modal [showBackdrop]="showBackdrop">
+          <ng-template>
+            <ion-content>
+              <div class="modal">
+                <div class="headModal">
+                  <ion-text class="titleModal">Detalle Viaje </ion-text>
+                </div>
+
+                <div class="icon-modal">
+                  <ion-img src="assets/icon-autobus.png"></ion-img>
+                </div>
+
+                <div>
+                  <ion-grid class="gridContent">
+                    <ion-row>
+                      <ion-col>
+                        <ion-text>N° Bus: {{selectedItem?.numBus}}</ion-text>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        <ion-text
+                          >Nombre Cooperativa:
+                          {{selectedItem?.nombreCoop}}</ion-text
+                        >
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        <ion-text>Placa: {{selectedItem?.placaBus}}</ion-text>
+                      </ion-col>
+                    </ion-row>
+                    <hr />
+                    <ion-row>
+                      <ion-col>
+                        <ion-text
+                          >Destino:
+                          {{selectedItem?.ciudadFinRuta}}</ion-text
+                        >
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        <ion-text
+                          >Hora y fecha salida:
+                          {{selectedItem?.fechaHoraSaliRuta}}</ion-text
+                        >
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        <ion-text
+                          >Hora y fecha llegada:
+                          {{selectedItem?.fechaHoraLlegRuta}}</ion-text
+                        >
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                  <ion-button class="btnModal"> Comprar Boleto </ion-button>
+                </div>
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+  </div>
 </ion-content>
