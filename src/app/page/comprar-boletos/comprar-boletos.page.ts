@@ -4,7 +4,8 @@ import { DataSharingService } from '../../services/data-sharing.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
 import { NavController } from '@ionic/angular';
-
+import { File } from '@ionic-native/file/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-comprar-boletos',
@@ -18,7 +19,7 @@ export class ComprarBoletosPage implements OnInit {
 
   showBackdrop: boolean = false;
   @ViewChild('modal') modal!: IonModal;
-  @ViewChild('modal') modalQR!: IonModal;
+  @ViewChild('modalQR') modalQR!: IonModal;
 
   private receivedData: any = this.dataSharingService.getDataViaje();
   private receivedDataUser: any = this.dataSharingService.getJsonData();
@@ -31,10 +32,11 @@ export class ComprarBoletosPage implements OnInit {
   fecHorSal: any;
   totalPagar: any;
 
-  qrCodeValue!: string;
+  qrCodeValue: any = [];
 
   constructor(private http: HttpClient, private dataSharingService: DataSharingService,
-    private payPal: PayPal, private navCtrl: NavController) {
+    private payPal: PayPal, private navCtrl: NavController, private file: File,
+    private alertController: AlertController) {
     this.buildSeatVIP();
     this.buildSeatGen();
     this.loadData();
@@ -98,9 +100,10 @@ export class ComprarBoletosPage implements OnInit {
       (response: HttpResponse<any>) => {
         if (response && response.status == 200 && response.body) {
           try {
-            this.qrCodeValue = response.body.idBol;
-            this.navCtrl.navigateForward('/boletos-user');
-
+            this.qrCodeValue = response.body;
+            console.log(this.qrCodeValue);
+            this.navCtrl.navigateForward('/home');
+            //this.openModalQR()
           } catch (error) {
             console.error('Error al procesar la respuesta:', error);
           }
@@ -123,10 +126,10 @@ export class ComprarBoletosPage implements OnInit {
     this.cantAsien = 0;
     this.precGen = 0;
     this.precVIP = 0;
-    this.total = 0;
+    this.total = 0.00;
     this.cantAsienCompr = 0;
     this.fecHorSal = 0;
-    this.totalPagar = 0;
+    this.totalPagar = 0.00;
     this.precGen = (parseFloat(this.receivedData.precioRuta) + 0.50);
     this.precVIP = (parseFloat(this.receivedData.precioRuta) + 1.50);
   }
@@ -202,7 +205,6 @@ export class ComprarBoletosPage implements OnInit {
     celda.seleccionada = true;
     this.cantAsien++;
     this.total += this.precVIP;
-    console.log('Celda seleccionada:', celda.identificador);
     setTimeout(() => {
     }, 10);
   }
@@ -212,9 +214,67 @@ export class ComprarBoletosPage implements OnInit {
     celda.seleccionada = true;
     this.cantAsien++;
     this.total += this.precGen;
-    console.log('Celda seleccionada:', celda.identificador);
     setTimeout(() => {
     }, 10);
+  }
+
+  seleccionarFoto() {
+    const fileInputElement = document.createElement('input');
+    fileInputElement.type = 'file';
+    fileInputElement.accept = 'image/*';
+    fileInputElement.addEventListener('change', (event: any) => {
+      const selectedFile = event.target.files[0];
+      this.validarPagoComprob();
+      if (selectedFile) {
+        this.file.resolveLocalFilesystemUrl(selectedFile.toInternalURL()).then((fileEntry) => {
+          this.resolveFile(fileEntry);
+
+        }).catch((error) => {
+          console.log('Error al resolver la URL del archivo:', error);
+
+        });
+      }
+    });
+    fileInputElement.click();
+  }
+
+  resolveFile(fileEntry: any) {
+
+    if (fileEntry.isFile) {
+      fileEntry.file((file: any) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (reader.result) {
+            const fotoBase64 = reader.result.toString();
+          } else {
+            console.log('Error al leer el archivo: result es nulo');
+
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+
+    }
+  }
+
+  async validarPagoComprob() {
+    try {
+      const alert = await this.alertController.create({
+        header: 'Pago exitoso',
+        message: '¡El pago se ha realizado correctamente!',
+        buttons: [
+          {
+            text: 'Aceptar',
+            handler: () => {
+             this.venderBoleto()
+            }
+          }
+        ]
+      });
+      await alert.present();
+    } catch (error) {
+      console.error('Error al enviar el pago:', error);
+    }
   }
 
 }

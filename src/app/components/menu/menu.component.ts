@@ -7,6 +7,7 @@ import { DataSharingService } from '../../services/data-sharing.service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+  
   private receivedData: any;
   namesUser!: string;
   rolUser!: string;
@@ -14,8 +15,7 @@ export class MenuComponent implements OnInit {
   public items = [
     { name: 'Inicio', image: 'assets/casa.svg', redirect:"home"},
     { name: 'Boletos Comprados', image: 'assets/boleto.svg', redirect:"boletos-user" },
-    { name: 'Comprar Boletos', image: 'assets/compra.svg', redirect:"comprar-boletos" },
-    { name: 'Destinos', image: 'assets/destino.svg', redirect:"destinos-user" },
+    { name: 'Comprar Boletos', image: 'assets/destino.svg', redirect:"destinos-user" },
     { name: 'Perfil', image: 'assets/user.svg' , redirect:"user-profile"},
     { name: 'Cerrar Sesión', image: 'assets/cerrar.svg', redirect:"login" }
   ];
