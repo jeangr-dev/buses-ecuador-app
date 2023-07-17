@@ -31,21 +31,6 @@
 
       <ion-row style="margin-bottom: 15px;">
         <ion-col size="auto">
-            <ng-container *ngIf="!isEditingUser; else editingTemplate2">
-              <ion-text class="texto">usuario: {{ username }}</ion-text>
-            </ng-container>
-            <ng-template #editingTemplate2>
-              <ion-input class="texto" [(ngModel)]="username " required></ion-input>
-            </ng-template>
-        </ion-col>
-        <ion-col  class="custom-col">
-          <ion-text (click)="editUsername()" style="cursor: pointer; text-decoration: underline;
-                    color: #063940;">{{ isEditingUser ? 'Guardar' : 'Editar' }}</ion-text>
-        </ion-col>
-      </ion-row>
-
-      <ion-row style="margin-bottom: 15px;">
-        <ion-col size="auto">
             <ng-container *ngIf="!isEditingPhone; else editingTemplate3">
               <ion-text class="texto">Telefono: {{ phone }}</ion-text>
             </ng-container>
