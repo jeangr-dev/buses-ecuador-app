@@ -13,12 +13,10 @@ import { ModalController, AlertController, NavController } from '@ionic/angular'
 export class UserProfilePage implements OnInit {
   private receivedData: any;
   names!: string;
-  username!: string;
   phone!: string;
   email!: string;
 
   isEditingNom = false;
-  isEditingUser = false;
   isEditingPhone = false;
   isEditingEmail = false;
 
@@ -55,32 +53,23 @@ export class UserProfilePage implements OnInit {
   initDataUser() {
     this.receivedData = this.dataSharingService.getJsonData();
     this.names = this.receivedData.nombrePers;
-    this.username = this.receivedData.usernamePers;
     this.phone = this.receivedData.telfPers;
     this.email = this.receivedData.correoPers;
   }
 
   cambiarEstado1(): void {
     this.isEditingNom = !this.isEditingNom;
-    this.isEditingUser = false;
     this.isEditingPhone = false;
     this.isEditingEmail = false;
   }
-  cambiarEstado2(): void {
-    this.isEditingUser = !this.isEditingUser;
-    this.isEditingNom = false;
-    this.isEditingPhone = false;
-    this.isEditingEmail = false;
-  }
+
   cambiarEstado3(): void {
     this.isEditingPhone = !this.isEditingPhone;
-    this.isEditingUser = false;
     this.isEditingNom = false;
     this.isEditingEmail = false;
   }
   cambiarEstado4(): void {
     this.isEditingEmail = !this.isEditingEmail;
-    this.isEditingUser = false;
     this.isEditingNom = false;
     this.isEditingPhone = false;
   }
@@ -111,31 +100,7 @@ export class UserProfilePage implements OnInit {
     }
   }
 
-  editUsername() {
-    const username = this.username;
-    if (this.isEditingUser) {
-      if (this.isEmptyInputUsername(username)) {
-        this.cambiarEstado2();
-        const dataUser = JSON.stringify({
-          idPers: this.receivedData.idPers,
-          nombrePers: this.receivedData.nombrePers,
-          cedPers: this.receivedData.cedPers,
-          usernamePers: username,
-          passwordPers: this.receivedData.passwordPers,
-          correoPers: this.receivedData.correoPers,
-          telfPers: this.receivedData.telfPers,
-          rolPers: this.receivedData.rolPers,
-        });
 
-        this.consumeServiceEdit(dataUser);
-      } else {
-        this.clearMsjDangerEdit();
-        this.isEmptyInputTextE.markAsTouched();
-      }
-    } else {
-      this.cambiarEstado2();
-    }
-  }
 
   editPhone() {
     const phone = this.phone;
@@ -204,19 +169,6 @@ export class UserProfilePage implements OnInit {
     }
   }
 
-  isEmptyInputUsername(username: string) {
-    if (
-      !username ||
-      !this.isEmptyInputTextE.invalid ||
-      !this.containsOnlyLettersUser(username)
-    ) {
-      this.clearMsjDangerEdit();
-      this.isEmptyInputTextE.markAsTouched();
-      return false;
-    } else {
-      return true;
-    }
-  }
 
   isEmptyInputPhone(phone: string) {
     if (
@@ -258,10 +210,6 @@ export class UserProfilePage implements OnInit {
     return regex.test(input);
   }
 
-  containsOnlyLettersUser(input: string): boolean {
-    const regex = /^[a-zA-Z]+$/;
-    return regex.test(input);
-  }
 
   containsOnlyDigits(input: string): boolean {
     if (input.length ===10 && !isNaN(Number(input))) {
