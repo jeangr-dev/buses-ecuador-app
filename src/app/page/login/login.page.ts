@@ -72,7 +72,7 @@ export class LoginPage implements OnInit {
               if(rolPers==="aprobador"){              
                 this.navCtrl.navigateForward('/lista-boletos-user');
               }else{
-                this.navCtrl.navigateForward('/destinos-user');
+                this.navCtrl.navigateForward('/home');
               }
               console.log(this.usuarioLogueado);
             } catch (error) {
