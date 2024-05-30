@@ -1,0 +1,117 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: white;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12%;
+  background-color: #063940;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 100%;
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Lora";
+  width: auto;
+  text-align: center;
+}
+
+ion-menu-button {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  font-size: 42px;
+  color: white;
+}
+
+.content {
+  margin: 5px;
+}
+
+.search {
+  width: 366px;
+  height: 45px;
+  margin-top: 10px;
+  margin-left: -7px;
+  --placeholder-color: black;
+  --border-radius: 10px;
+  --border-color: black;
+}
+
+.imgIcon {
+  margin-right: 10px;
+  width: 42px;
+  height: 42px;
+}
+
+ion-modal {
+  --height: 55%;
+  --border-radius: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.headModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 13%;
+  background-color: #063940;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 100%;
+}
+
+.titleModal {
+  color: #f3f3f3;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Lora";
+  width: auto;
+  text-align: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f3f3f3;
+}
+
+.icon-modal {
+  height: 90px;
+  width: 90px;
+  margin-left: 35%;
+  margin-top: 20px;
+}
+
+.gridContent {
+  margin-top: 10px;
+  margin-left: 3%;
+}
+
+.btnModal {
+  --border-radius: 8px;
+  width: 225px;
+  height: 40px;
+  margin-left: 15%;
+  margin-top: 25px;
+  font-weight: bold;
+  font-size: smaller;
+  --color: white;
+  --background: #063940;
+  --background-activated: #47667b;
+}
+
+hr {
+  background-color: black;
+}

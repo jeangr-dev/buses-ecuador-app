@@ -1,0 +1,122 @@
+<ion-content>
+<div class="container">
+  <div class="head">
+    <div id="menu">
+      <ion-menu-button></ion-menu-button>
+    </div>
+      <ion-text class="title">Perfil de usuario</ion-text>
+  </div>
+
+  <div class="logo">
+    <img src="assets/icon-user.png" alt="Logo" >
+  </div>
+
+  <div class="contentUser">
+
+    <ion-grid style="--ion-grid-padding: 0;">
+      <ion-row style="margin-bottom: 15px;">
+        <ion-col size="auto">
+            <ng-container *ngIf="!isEditingNom; else editingTemplate1">
+              <ion-text class="texto">Nombres: {{ names }}</ion-text>
+            </ng-container>
+            <ng-template #editingTemplate1>
+              <ion-input class="texto" [(ngModel)]="names " pattern="[a-zA-Z]+" required></ion-input>
+            </ng-template>
+        </ion-col>
+        <ion-col  class="custom-col">
+          <ion-text (click)="editNames()" style="cursor: pointer; text-decoration: underline;
+                    color: #063940;">{{ isEditingNom ? 'Guardar' : 'Editar' }}</ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 15px;">
+        <ion-col size="auto">
+            <ng-container *ngIf="!isEditingPhone; else editingTemplate3">
+              <ion-text class="texto">Telefono: {{ phone }}</ion-text>
+            </ng-container>
+            <ng-template #editingTemplate3>
+              <ion-input class="texto" [(ngModel)]="phone" pattern="[0-9]+" required></ion-input>
+            </ng-template>
+        </ion-col>
+        <ion-col  class="custom-col">
+          <ion-text (click)="editPhone()" style="cursor: pointer; text-decoration: underline;
+                    color: #063940;">{{ isEditingPhone ? 'Guardar' : 'Editar' }}</ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 15px;">
+        <ion-col size="auto">
+            <ng-container *ngIf="!isEditingEmail; else editingTemplate4">
+              <ion-text class="texto">email: {{ email }}</ion-text>
+            </ng-container>
+            <ng-template #editingTemplate4>
+              <ion-input class="texto" [(ngModel)]="email" required></ion-input>
+            </ng-template>
+        </ion-col>
+        <ion-col  class="custom-col">
+          <ion-text (click)="editEmail()" style="cursor: pointer; text-decoration: underline;
+                    color: #063940;">{{ isEditingEmail ? 'Guardar' : 'Editar' }}</ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-text color="danger" *ngIf="isEmptyInputTextL.invalid && (isEmptyInputTextL.dirty || isEmptyInputTextL.touched)">
+        <ion-label *ngIf="isEmptyInputTextL.errors?.hasOwnProperty('required')">El campo parece estar vacio o contener digitos</ion-label>
+      </ion-text>
+      <ion-text color="danger" *ngIf="isEmptyInputTextD.invalid && (isEmptyInputTextD.dirty || isEmptyInputTextD.touched)">
+        <ion-label *ngIf="isEmptyInputTextD.errors?.hasOwnProperty('required')">Este campo debe contener solo digitos (10)</ion-label>
+      </ion-text>
+      <ion-text color="danger" *ngIf="isEmptyInputTextE.invalid && (isEmptyInputTextE.dirty || isEmptyInputTextE.touched)">
+        <ion-label *ngIf="isEmptyInputTextE.errors?.hasOwnProperty('required')">El campo parece estar vacio</ion-label>
+      </ion-text>
+      <ion-text color="danger" *ngIf="isEmptyInputEmail.invalid && (isEmptyInputEmail.dirty || isEmptyInputEmail.touched)">
+        <ion-label *ngIf="isEmptyInputEmail.errors?.hasOwnProperty('required')">El correo esta vacio o no es valido</ion-label>
+      </ion-text>
+
+      <ion-row >
+        <ion-col >
+          <ion-button id="open-modal" >Cambiar contraseña</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+  <div>
+    <ion-modal #modal trigger="open-modal" [showBackdrop]="showBackdrop">
+      <ng-template >
+        <ion-content>
+
+          <div class="modal">
+            <div class="headModal">
+              <ion-text class="titleModal">Cambiar Contraseña</ion-text>
+            </div>
+            <ion-item class="inputPassword">
+              <ion-input [(ngModel)]="passwordCurrent" clearInput type="password" placeholder="Contraseña actual" required></ion-input>
+            </ion-item>
+            <ion-item class="inputPassword" >
+              <ion-input [(ngModel)]="passwordNew" clearInput type="password" placeholder="Contraseña nueva" required> </ion-input>
+            </ion-item>
+            <ion-item class="inputPassword">
+              <ion-input [(ngModel)]="confPassword" clearInput type="password" placeholder="Confirmar contraseña" required></ion-input>
+            </ion-item>
+            <ion-button (click)="changePassword()" class="btnModal">Confirmar</ion-button>
+
+            <ion-text color="danger" *ngIf="wrongPasswCurrent.invalid && (wrongPasswCurrent.dirty || wrongPasswCurrent.touched)">
+              <ion-label *ngIf="wrongPasswCurrent.errors?.hasOwnProperty('required')">Contraseña actual incorrecta</ion-label>
+            </ion-text>
+            <ion-text color="danger" *ngIf="wrongPassword.invalid && (wrongPassword.dirty || wrongPassword.touched)">
+              <ion-label *ngIf="wrongPassword.errors?.hasOwnProperty('required')">Las contraseñas no coinciden</ion-label>
+            </ion-text>
+            <ion-text color="danger" *ngIf="isEmptyInputText.invalid && (isEmptyInputText.dirty || isEmptyInputText.touched)">
+              <ion-label *ngIf="isEmptyInputText.errors?.hasOwnProperty('required')">Todos los campos son obligatorios</ion-label>
+            </ion-text>
+          </div>
+
+          <ion-alert class="custom-alert"></ion-alert>
+          
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </div>
+</div>  
+</ion-content>

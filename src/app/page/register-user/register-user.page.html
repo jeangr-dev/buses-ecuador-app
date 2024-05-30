@@ -1,0 +1,85 @@
+<ion-content >
+  <div class="container">
+    <div class="head">
+      <ion-text class="title">Registro de Usuario</ion-text>
+    </div>
+
+    <div class="logo">
+      <img src="assets/uploadphoto.png" alt="Logo" >
+    </div>
+
+    <div>
+      <ion-grid>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input clearInput [(ngModel)]="cedula" type="text" placeholder="Cedula" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input clearInput type="text" [(ngModel)]="nomApell" placeholder="Nombre y Apellido" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input clearInput type="text" [(ngModel)]="username" placeholder="Nombre de usuario" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input clearInput type="tel" [(ngModel)]="telefono" placeholder="Teléfono" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input clearInput type="email" [(ngModel)]="email" placeholder="Correo Electrónico" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input id="inputPassword" clearInput type="password" [(ngModel)]="password" placeholder="Contraseña" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input clearInput type="password" [(ngModel)]="confpassword" placeholder="Confirmar contraseña" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="registrarUser()" >Registrar</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </div>
+    <ion-text color="danger" *ngIf="wrongPassword.invalid && (wrongPassword.dirty || wrongPassword.touched)">
+      <ion-label *ngIf="wrongPassword.errors?.hasOwnProperty('required')">Las contraseñas no coinciden</ion-label>
+    </ion-text>
+    <ion-text color="danger" *ngIf="isEmptyInputText.invalid && (isEmptyInputText.dirty || isEmptyInputText.touched)">
+      <ion-label *ngIf="isEmptyInputText.errors?.hasOwnProperty('required')">Todos los campos son obligatorios</ion-label>
+    </ion-text>  
+  </div>
+</ion-content>

@@ -1,0 +1,66 @@
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12%;
+  background-color: #063940;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background-color: #f3f3f3;
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Lora";
+  width: auto;
+  text-align: center;
+}
+
+ion-button {
+  --border-radius: 8px;
+  margin-top: 40px;
+  width: 344px;
+  height: 82px;
+  font-weight: bold;
+  font-size: large;
+  --color: white;
+}
+.comprado {
+  --background: #53a08e;
+}
+.comprar {
+  --background: #7ebea3;
+}
+.destino {
+  --background: #a9cba6;
+}
+
+.logo {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  --background: transparent;
+  --box-shadow: none;
+  width: 80px;
+  height: 80px;
+  --animation: unset;
+  transition: none;
+}
+
+ion-menu-button {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  font-size: 42px;
+  color: white;
+}
